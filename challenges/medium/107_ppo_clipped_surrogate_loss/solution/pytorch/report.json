@@ -1,0 +1,8 @@
+{
+  "backend": "pytorch",
+  "challenge": "challenges/medium/107_ppo_clipped_surrogate_loss",
+  "message": "Run scripts/local_practice.py to generate this report.",
+  "schema_version": 2,
+  "status": "not_run",
+  "updated_at": null
+}

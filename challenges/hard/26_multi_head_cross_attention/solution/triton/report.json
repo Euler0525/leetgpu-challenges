@@ -1,0 +1,8 @@
+{
+  "backend": "triton",
+  "challenge": "challenges/hard/26_multi_head_cross_attention",
+  "message": "Run scripts/local_practice.py to generate this report.",
+  "schema_version": 2,
+  "status": "not_run",
+  "updated_at": null
+}

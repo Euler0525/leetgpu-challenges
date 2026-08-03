@@ -1,0 +1,5 @@
+# Local practice report: challenges/hard/59_sliding_window_attn
+
+- Backend: `cuda`
+- Status: **not_run**
+- Updated: not run

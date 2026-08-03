@@ -1,0 +1,8 @@
+{
+  "backend": "pytorch",
+  "challenge": "challenges/medium/48_2d_subarray_sum",
+  "message": "Run scripts/local_practice.py to generate this report.",
+  "schema_version": 2,
+  "status": "not_run",
+  "updated_at": null
+}

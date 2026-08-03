@@ -1,0 +1,8 @@
+{
+  "backend": "cuda",
+  "challenge": "challenges/hard/46_bfs_shortest_path",
+  "message": "Run scripts/local_practice.py to generate this report.",
+  "schema_version": 2,
+  "status": "not_run",
+  "updated_at": null
+}

@@ -1,0 +1,8 @@
+{
+  "backend": "pytorch",
+  "challenge": "challenges/medium/80_grouped_query_attention",
+  "message": "Run scripts/local_practice.py to generate this report.",
+  "schema_version": 2,
+  "status": "not_run",
+  "updated_at": null
+}
