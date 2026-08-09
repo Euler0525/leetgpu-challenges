@@ -5,7 +5,14 @@ import triton.language as tl
 
 @triton.jit
 def matrix_add_kernel(a, b, c, n_elements, BLOCK_SIZE: tl.constexpr):
-    pass
+    pid = tl.program_id(axis=0)
+    offsets = pid * BLOCK_SIZE + tl.arange(0, BLOCK_SIZE)
+    mask = offsets < n_elements
+
+    a_value = tl.load(a + offsets, mask=mask)
+    b_value = tl.load(b + offsets, mask=mask)
+    c_value = a_value + b_value
+    tl.store(c + offsets, c_value, mask=mask)
 
 
 # a, b, c are tensors on the GPU
