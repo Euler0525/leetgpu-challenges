@@ -1,8 +1,200 @@
 {
   "backend": "cuda",
+  "backend_details": {
+    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\7_color_inversion\\cuda\\5c939ede9bd54039\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\7_color_inversion\\solution\\cuda\\solution.cu",
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\7_color_inversion\\cuda\\5c939ede9bd54039\\solution.dll"
+  },
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 1336.698260764985,
+    "case": {
+      "height": 5120,
+      "image": {
+        "bytes": 83886080,
+        "dtype": "torch.uint8",
+        "kind": "tensor",
+        "shape": [
+          83886080
+        ]
+      },
+      "width": 4096
+    },
+    "effective_bandwidth_gbps": 224.2607544767848,
+    "effective_memory_bandwidth_gbps": {
+      "best": 228.1894164127899,
+      "mean": 222.22467117094004,
+      "p50": 224.2607544767848,
+      "p90": 217.2647082339128
+    },
+    "gpu_latency_ms": {
+      "max": 0.8642560243606567,
+      "mean": 0.7549664000670115,
+      "min": 0.7352319955825806,
+      "p50": 0.7481119930744171,
+      "p90": 0.7722016215324402,
+      "p99": 0.8533705770969391,
+      "stddev": 0.02720477877494419
+    },
+    "host_sync_overhead_ms_p50": 0.013538006656744983,
+    "host_sync_overhead_percent_p50": 1.77745771174732,
+    "io_bytes": 167772160,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 167772160,
+      "peak_reserved_bytes": 2602565632,
+      "resident_allocated_bytes": 167772160,
+      "resident_reserved_bytes": 2602565632
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 83886080,
+      "inout_write": 83886080,
+      "input_read": 0,
+      "minimum_total": 167772160,
+      "output_write": 0
+    },
+    "output_elements": 83886080,
+    "output_throughput_elements_per_second": 112130377238.3924,
+    "peak_allocated_bytes": 167772160,
+    "peak_reserved_bytes": 2602565632,
+    "performance_correctness": {
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "outputs": [
+        {
+          "max_abs_error": 0.0,
+          "max_rel_error": 0.0,
+          "name": "image"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 92.8271927421005,
+      "mean": 92.05922069089691,
+      "p50": 92.35625684142002,
+      "p90": 91.68952008606902
+    },
+    "reference_gpu_latency_ms": {
+      "max": 1.8933759927749634,
+      "mean": 1.822437326113383,
+      "min": 1.807360053062439,
+      "p50": 1.8165760040283203,
+      "p90": 1.8297855615615846,
+      "p99": 1.8900723135471345,
+      "stddev": 0.020298112154685147
+    },
+    "reference_wall_latency_ms": {
+      "max": 1.9447999998192245,
+      "mean": 1.8382366666628513,
+      "min": 1.8187000000580156,
+      "p50": 1.8296000000646018,
+      "p90": 1.8461199999364908,
+      "p99": 1.938651999821559,
+      "stddev": 0.028793419145408103
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 2.4282139851320625,
+    "updated_at": "2026-08-09T04:48:11+00:00",
+    "wall_latency_ms": {
+      "max": 0.9030999999595224,
+      "mean": 0.7711299999452118,
+      "min": 0.7461999998668034,
+      "p50": 0.7616499997311621,
+      "p90": 0.8078799998656905,
+      "p99": 0.8881650000466834,
+      "stddev": 0.0335317973444522
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/easy/7_color_inversion",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_6",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_7",
+        "status": "passed"
+      }
+    ],
+    "passed": 8,
+    "total": 8,
+    "updated_at": "2026-08-09T04:48:11+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::cuda::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-09T04:48:11+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\7_color_inversion\\solution\\cuda\\solution.cu",
+    "sha256": "7dc7ab647ee374079c430d6a57e7e7b58702f91405bd3823635c96cddbf5692c"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-09T04:48:11+00:00"
 }
