@@ -1,1 +1,81 @@
-{"traceEvents": []}
+
+{
+  "schemaVersion": 1,
+  "deviceProperties": [
+  ],
+  "profile_memory": 1,
+  "record_shapes": 1,
+  "traceEvents": [
+  {
+    "ph": "X", "cat": "user_annotation", "name": "leetgpu::pytorch::solve", "pid": 27308, "tid": 4792,
+    "ts": 3292277694829.424, "dur": 60875.200,
+    "args": {
+      "External id": 1,"Record function id": 0, "Ev Idx": 0
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::matmul", "pid": 27308, "tid": 4792,
+    "ts": 3292277696807.424, "dur": 141.200,
+    "args": {
+      "External id": 2,"Record function id": 0, "Sequence number": 0, "Input type": ["float", "float", "float"], "Ev Idx": 1, "Input Dims": [[8192, 6144], [6144, 4096], [8192, 4096]], "Input Strides": [[6144, 1], [4096, 1], [4096, 1]], "Concrete Inputs": ["", "", ""], "Fwd thread id": 0
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::mm", "pid": 27308, "tid": 4792,
+    "ts": 3292277696815.824, "dur": 122.900,
+    "args": {
+      "External id": 3,"Record function id": 0, "Sequence number": 0, "Input type": ["float", "float", "float"], "Ev Idx": 2, "Input Dims": [[8192, 6144], [6144, 4096], [8192, 4096]], "Input Strides": [[6144, 1], [4096, 1], [4096, 1]], "Concrete Inputs": ["", "", ""], "Fwd thread id": 0
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3292277693558.900, "pid": 27308, "tid": 4792,
+    "args": {
+      "name": "thread 4792 ()"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3292277693558.900, "pid": 27308, "tid": 4792,
+    "args": {
+      "sort_index": 4792
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3292277693558.900, "pid": 27308, "tid": 4792,
+    "args": {
+      "name": "thread 4792 ()"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3292277693558.900, "pid": 27308, "tid": 4792,
+    "args": {
+      "sort_index": 4792
+    }
+  },
+  {
+    "ph": "X", "cat": "Trace", "ts": 3292277693497.900, "dur": 62331.700,
+    "pid": "Spans", "tid": "PyTorch Profiler",
+    "name": "PyTorch Profiler (0)",
+    "args": {
+      "Op count": 0
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3292277693497.900,
+    "pid": "Spans", "tid": 0,
+    "args": {
+      "sort_index": 536870912
+    }
+  },
+  {
+    "name": "Iteration Start: PyTorch Profiler", "ph": "i", "s": "g",
+    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 3292277693497.900
+  },
+  {
+    "name": "Record Window End", "ph": "i", "s": "g",
+    "pid": "", "tid": "", "ts": 3292277755978.700
+  }
+  ],
+  "traceName": "C:/Syncdisk/leetgpu-challenges/challenges/easy/2_matrix_multiplication/solution/pytorch/profile_trace.json",
+  "displayTimeUnit": "ms",
+  "baseTimeNanoseconds": 1782967788000000000
+}

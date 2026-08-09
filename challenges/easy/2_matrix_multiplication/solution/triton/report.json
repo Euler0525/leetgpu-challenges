@@ -1,8 +1,258 @@
 {
   "backend": "triton",
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 9.05005025369893,
+    "case": {
+      "A": {
+        "bytes": 201326592,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      "B": {
+        "bytes": 100663296,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          6144,
+          4096
+        ]
+      },
+      "C": {
+        "bytes": 134217728,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          8192,
+          4096
+        ]
+      },
+      "K": 4096,
+      "M": 8192,
+      "N": 6144
+    },
+    "effective_bandwidth_gbps": 3.947700845846205,
+    "effective_memory_bandwidth_gbps": {
+      "best": 4.035773730009071,
+      "mean": 3.9018221361957512,
+      "p50": 3.947700845846205,
+      "p90": 3.7661304147985764
+    },
+    "gpu_latency_ms": {
+      "max": 121.39826965332031,
+      "mean": 111.7958740234375,
+      "min": 108.08525085449219,
+      "p50": 110.49662399291992,
+      "p90": 115.82382125854492,
+      "p99": 120.87710510253906,
+      "stddev": 3.299226159227877
+    },
+    "host_sync_overhead_ms_p50": 0.0833760071072902,
+    "host_sync_overhead_percent_p50": 0.07539881272135078,
+    "io_bytes": 436207616,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 444727296,
+      "peak_reserved_bytes": 2506096640,
+      "resident_allocated_bytes": 444727296,
+      "resident_reserved_bytes": 2506096640
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 301989888,
+      "minimum_total": 436207616,
+      "output_write": 134217728
+    },
+    "output_elements": 33554432,
+    "output_throughput_elements_per_second": 303669295.83432347,
+    "peak_allocated_bytes": 444727296,
+    "peak_reserved_bytes": 2506096640,
+    "performance_correctness": {
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "outputs": [
+        {
+          "max_abs_error": 0.0,
+          "max_rel_error": 0.0,
+          "name": "C"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 7.408192155950034,
+      "mean": 7.214431765103662,
+      "p50": 7.2142597462944025,
+      "p90": 7.070966353184825
+    },
+    "reference_gpu_latency_ms": {
+      "max": 62.06361770629883,
+      "mean": 60.46319796244303,
+      "min": 58.88179016113281,
+      "p50": 60.46463966369629,
+      "p90": 61.689957809448245,
+      "p99": 61.959978637695315,
+      "stddev": 0.8540213300836372
+    },
+    "reference_wall_latency_ms": {
+      "max": 62.12469999991299,
+      "mean": 60.5296233333623,
+      "min": 58.942499999830034,
+      "p50": 60.545599999841215,
+      "p90": 61.74892999933945,
+      "p99": 62.02174999987619,
+      "stddev": 0.8518170412154276
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 0.5472080275282488,
+    "updated_at": "2026-08-09T07:51:58+00:00",
+    "wall_latency_ms": {
+      "max": 121.47889999960171,
+      "mean": 111.89791000003122,
+      "min": 108.21440000017901,
+      "p50": 110.58000000002721,
+      "p90": 115.98361999967892,
+      "p99": 120.96238099966286,
+      "stddev": 3.301413711422826
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/easy/2_matrix_multiplication",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.814697265625e-06,
+        "max_rel_error": 1.3625580228302046e-07,
+        "name": "functional_6",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.0517578125e-05,
+        "max_rel_error": 5.887827136086863e-07,
+        "name": "functional_7",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 6.103515625e-05,
+        "max_rel_error": 1.9005930614409208e-05,
+        "name": "functional_8",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.0517578125e-05,
+        "max_rel_error": 8.952017187873e-06,
+        "name": "functional_9",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 4.57763671875e-05,
+        "max_rel_error": 7.01723657855263e-06,
+        "name": "functional_10",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_11",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 2.9802322387695312e-08,
+        "max_rel_error": 1.194921583271098e-07,
+        "name": "functional_12",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 1.4901161193847656e-08,
+        "max_rel_error": 1.8195660116714242e-07,
+        "name": "functional_13",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_14",
+        "status": "passed"
+      }
+    ],
+    "passed": 15,
+    "total": 15,
+    "updated_at": "2026-08-09T07:51:58+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::triton::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-09T07:51:58+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\2_matrix_multiplication\\solution\\triton\\solution.py",
+    "sha256": "282bfdfc0f1996af97e6f97f802da1ea54d443dc6fa7ebd6bd2ece2c9ec061f9"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-09T07:51:58+00:00"
 }
