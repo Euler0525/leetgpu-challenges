@@ -1,8 +1,125 @@
 {
   "backend": "pytorch",
   "challenge": "challenges/easy/9_1d_convolution",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 4.76837158203125e-07,
+        "max_rel_error": 1.0827253018719346e-07,
+        "name": "functional_6",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 1.9073486328125e-06,
+        "max_rel_error": 1.3035736167128567e-06,
+        "name": "functional_7",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 5.7220458984375e-06,
+        "max_rel_error": 0.00010706556633014523,
+        "name": "functional_8",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 2.384185791015625e-06,
+        "max_rel_error": 1.4275012105210265e-06,
+        "name": "functional_9",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 4.76837158203125e-07,
+        "max_rel_error": 1.45845000933408e-06,
+        "name": "functional_10",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_11",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 2.9802322387695312e-08,
+        "max_rel_error": 1.0254203762103293e-07,
+        "name": "functional_12",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.725290298461914e-09,
+        "max_rel_error": 4.4125041326867975e-05,
+        "name": "functional_13",
+        "status": "passed"
+      }
+    ],
+    "passed": 14,
+    "total": 14,
+    "updated_at": "2026-08-09T06:20:54+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [
+    {
+      "message": "Tensor-likes are not close!\n\nMismatched elements: 1123258 / 1497954 (75.0%)\nGreatest absolute difference: 0.019745349884033203 at index (150748,) (up to 0.0001 allowed)\nGreatest relative difference: 165.125 at index (1278817,) (up to 0.0001 allowed)",
+      "stage": "run",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Syncdisk\\leetgpu-challenges\\scripts\\local_practice.py\", line 1009, in run_backend\n    benchmark, profile_result = run_benchmark(\n                                ^^^^^^^^^^^^^^\n  File \"C:\\Syncdisk\\leetgpu-challenges\\scripts\\local_practice.py\", line 805, in run_benchmark\n    absolute, relative = assert_output_close(actual, expected, challenge.atol, challenge.rtol)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Syncdisk\\leetgpu-challenges\\scripts\\local_practice.py\", line 536, in assert_output_close\n    torch.testing.assert_close(actual, expected_device, atol=atol, rtol=rtol, equal_nan=True)\n  File \"C:\\Software\\Anaconda\\Lib\\site-packages\\torch\\testing\\_comparison.py\", line 1530, in assert_close\n    raise error_metas[0].to_error(msg)\nAssertionError: Tensor-likes are not close!\n\nMismatched elements: 1123258 / 1497954 (75.0%)\nGreatest absolute difference: 0.019745349884033203 at index (150748,) (up to 0.0001 allowed)\nGreatest relative difference: 165.125 at index (1278817,) (up to 0.0001 allowed)\n",
+      "type": "AssertionError"
+    }
+  ],
+  "mode": "run",
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\9_1d_convolution\\solution\\pytorch\\solution.py",
+    "sha256": "6abfee7b8f3485f1dbaadd555ebe8a12131012c3d3f72eb8aa08e0eb20482308"
+  },
+  "status": "failed",
+  "updated_at": "2026-08-09T06:20:54+00:00"
 }

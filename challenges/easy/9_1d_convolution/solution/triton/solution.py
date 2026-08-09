@@ -5,7 +5,18 @@ import triton.language as tl
 
 @triton.jit
 def conv1d_kernel(input, kernel, output, input_size, kernel_size, BLOCK_SIZE: tl.constexpr):
-    pass
+    output_size = input_size - kernel_size + 1
+    pid = tl.program_id(axis=0)
+    offsets = pid * BLOCK_SIZE + tl.arange(0, BLOCK_SIZE)
+    mask = offsets < output_size
+
+    acc = tl.zeros((BLOCK_SIZE,), dtype=tl.float32)
+    for i in tl.range(kernel_size):
+        x = tl.load(input + offsets + i, mask=mask, other=0.0)
+        k = tl.load(kernel + i)
+        acc += x * k
+
+    tl.store(output + offsets, acc, mask=mask)
 
 
 # input, kernel, output are tensors on the GPU
