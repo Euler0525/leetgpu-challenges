@@ -1,8 +1,231 @@
 {
   "backend": "cuda",
+  "backend_details": {
+    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\21_relu\\cuda\\90c7b2a5d1e1f2c9\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\21_relu\\solution\\cuda\\solution.cu",
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\21_relu\\cuda\\90c7b2a5d1e1f2c9\\solution.dll"
+  },
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 1113.3675550475923,
+    "case": {
+      "N": 25000000,
+      "input": {
+        "bytes": 100000000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          25000000
+        ]
+      },
+      "output": {
+        "bytes": 100000000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          25000000
+        ]
+      }
+    },
+    "effective_bandwidth_gbps": 222.67351100951845,
+    "effective_memory_bandwidth_gbps": {
+      "best": 225.05491486535848,
+      "mean": 221.05843988553193,
+      "p50": 222.67351100951845,
+      "p90": 214.35087528057093
+    },
+    "gpu_latency_ms": {
+      "max": 0.9511039853096008,
+      "mean": 0.9047381321589152,
+      "min": 0.8886719942092896,
+      "p50": 0.898175984621048,
+      "p90": 0.9330496072769165,
+      "p99": 0.9508627164363861,
+      "stddev": 0.016894561652430688
+    },
+    "host_sync_overhead_ms_p50": 0.0118740153948238,
+    "host_sync_overhead_percent_p50": 1.304765166157542,
+    "io_bytes": 200000000,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 201326592,
+      "peak_reserved_bytes": 1713373184,
+      "resident_allocated_bytes": 201326592,
+      "resident_reserved_bytes": 1713373184
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 100000000,
+      "minimum_total": 200000000,
+      "output_write": 100000000
+    },
+    "output_elements": 25000000,
+    "output_throughput_elements_per_second": 27834188876.189808,
+    "peak_allocated_bytes": 201326592,
+    "peak_reserved_bytes": 1713373184,
+    "performance_correctness": {
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "outputs": [
+        {
+          "max_abs_error": 0.0,
+          "max_rel_error": 0.0,
+          "name": "output"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 98.99265633463419,
+      "mean": 97.94242526000995,
+      "p50": 97.90099971290057,
+      "p90": 97.48565552230795
+    },
+    "reference_gpu_latency_ms": {
+      "max": 2.0684800148010254,
+      "mean": 2.0420160055160523,
+      "min": 2.0203518867492676,
+      "p50": 2.042880058288574,
+      "p90": 2.0515838861465454,
+      "p99": 2.065807354450226,
+      "stddev": 0.010404667573791737
+    },
+    "reference_wall_latency_ms": {
+      "max": 2.1085999999286287,
+      "mean": 2.066516666680703,
+      "min": 2.0348000000467437,
+      "p50": 2.0660999999790874,
+      "p90": 2.09001999994598,
+      "p99": 2.1053809999466466,
+      "stddev": 0.019215151706646953
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 2.274476375752233,
+    "updated_at": "2026-08-10T06:02:06+00:00",
+    "wall_latency_ms": {
+      "max": 0.9738000001107139,
+      "mean": 0.917716666663182,
+      "min": 0.8980999999721462,
+      "p50": 0.9100500000158718,
+      "p90": 0.9459099999958198,
+      "p99": 0.9712190000743703,
+      "stddev": 0.01856592010877293
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/easy/21_relu",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_6",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_7",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_8",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_9",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_10",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_11",
+        "status": "passed"
+      }
+    ],
+    "passed": 12,
+    "total": 12,
+    "updated_at": "2026-08-10T06:02:06+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::cuda::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-10T06:02:06+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\21_relu\\solution\\cuda\\solution.cu",
+    "sha256": "c6f97b33b9cb6d9ea2e3b9cad0cab286868016665bc9fe538e6a7bef0008fd93"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-10T06:02:06+00:00"
 }
