@@ -1,8 +1,201 @@
 {
   "backend": "cuda",
+  "backend_details": {
+    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\65_geglu\\cuda\\20fda66b887ab367\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\65_geglu\\solution\\cuda\\solution.cu",
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\65_geglu\\cuda\\20fda66b887ab367\\solution.dll"
+  },
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 43014.452725805066,
+    "case": {
+      "N": 1000000,
+      "input": {
+        "bytes": 4000000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          1000000
+        ]
+      },
+      "output": {
+        "bytes": 2000000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          500000
+        ]
+      }
+    },
+    "effective_bandwidth_gbps": 258.0867163548304,
+    "effective_memory_bandwidth_gbps": {
+      "best": 290.24769090829636,
+      "mean": 189.78373117261825,
+      "p50": 258.0867163548304,
+      "p90": 107.5114673764085
+    },
+    "gpu_latency_ms": {
+      "max": 0.08499199897050858,
+      "mean": 0.03161493328710397,
+      "min": 0.02067199908196926,
+      "p50": 0.02324800007045269,
+      "p90": 0.05580800026655198,
+      "p99": 0.0805375996232033,
+      "stddev": 0.016988656049980354
+    },
+    "host_sync_overhead_ms_p50": 0.009552000483381562,
+    "host_sync_overhead_percent_p50": 29.12195220150676,
+    "io_bytes": 6000000,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 6000640,
+      "peak_reserved_bytes": 44040192,
+      "resident_allocated_bytes": 6000640,
+      "resident_reserved_bytes": 44040192
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 4000000,
+      "minimum_total": 6000000,
+      "output_write": 2000000
+    },
+    "output_elements": 500000,
+    "output_throughput_elements_per_second": 21507226362.90253,
+    "peak_allocated_bytes": 6000640,
+    "peak_reserved_bytes": 44040192,
+    "performance_correctness": {
+      "max_abs_error": 6.103515625e-05,
+      "max_rel_error": 1.7570962087486523e-07,
+      "outputs": [
+        {
+          "max_abs_error": 6.103515625e-05,
+          "max_rel_error": 1.7570962087486523e-07,
+          "name": "output"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 83.48174140312281,
+      "mean": 65.58160558087964,
+      "p50": 73.52941246830024,
+      "p90": 51.40930002906935
+    },
+    "reference_gpu_latency_ms": {
+      "max": 0.1730560064315796,
+      "mean": 0.09148906841874123,
+      "min": 0.07187200337648392,
+      "p50": 0.08159999921917915,
+      "p90": 0.11671040058135987,
+      "p99": 0.1650844840705395,
+      "stddev": 0.023419987426986404
+    },
+    "reference_wall_latency_ms": {
+      "max": 0.18350000027567148,
+      "mean": 0.11000999984389637,
+      "min": 0.0827999974717386,
+      "p50": 0.1021999996737577,
+      "p90": 0.13282999680086507,
+      "p99": 0.17598900005395993,
+      "stddev": 0.02125018194827024
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 3.5099793088391116,
+    "updated_at": "2026-08-10T11:59:04+00:00",
+    "wall_latency_ms": {
+      "max": 0.09480000153416768,
+      "mean": 0.045556666736956686,
+      "min": 0.030899998819222674,
+      "p50": 0.03280000055383425,
+      "p90": 0.07277999902726152,
+      "p99": 0.09456800187763292,
+      "stddev": 0.019737978704235708
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/easy/65_geglu",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.0517578125e-05,
+        "max_rel_error": 1.1378134434251279e-07,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.0517578125e-05,
+        "max_rel_error": 1.609338929433948e-07,
+        "name": "functional_6",
+        "status": "passed"
+      }
+    ],
+    "passed": 7,
+    "total": 7,
+    "updated_at": "2026-08-10T11:59:04+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::cuda::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-10T11:59:04+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\65_geglu\\solution\\cuda\\solution.cu",
+    "sha256": "bb3769f9aed96cede139fc32fad72875d982efe9f147ce7c4c5e4a683e59df7b"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-10T11:59:04+00:00"
 }
