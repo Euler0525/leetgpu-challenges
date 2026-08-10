@@ -5,7 +5,14 @@ import triton.language as tl
 
 @triton.jit
 def swiglu(input, output, N, BLOCK_SIZE: tl.constexpr):
-    pass
+    pid = tl.program_id(axis=0)
+    offsets = pid * BLOCK_SIZE + tl.arange(0, BLOCK_SIZE)
+    mask = offsets < N // 2
+
+    x1 = tl.load(input + offsets, mask=mask)
+    x2 = tl.load(input + N // 2 + offsets, mask=mask)
+    output_value = x1 * tl.sigmoid(x1) * x2
+    tl.store(output + offsets, output_value, mask=mask)
 
 
 # input, output are tensors on the GPU

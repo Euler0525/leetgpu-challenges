@@ -1,8 +1,201 @@
 {
   "backend": "cuda",
+  "backend_details": {
+    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\54_swiglu\\cuda\\2daf4c690990acbc\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\54_swiglu\\solution\\cuda\\solution.cu",
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\54_swiglu\\cuda\\2daf4c690990acbc\\solution.dll"
+  },
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 57444.85193373015,
+    "case": {
+      "N": 100000,
+      "input": {
+        "bytes": 400000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          100000
+        ]
+      },
+      "output": {
+        "bytes": 200000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          50000
+        ]
+      }
+    },
+    "effective_bandwidth_gbps": 34.46691116023809,
+    "effective_memory_bandwidth_gbps": {
+      "best": 36.62109384245937,
+      "mean": 26.885574848292354,
+      "p50": 34.46691116023809,
+      "p90": 17.546322300426887
+    },
+    "gpu_latency_ms": {
+      "max": 0.058368001133203506,
+      "mean": 0.022316800119976204,
+      "min": 0.016383999958634377,
+      "p50": 0.01740800030529499,
+      "p90": 0.034195199981331845,
+      "p99": 0.05628928042948247,
+      "stddev": 0.010799762461834774
+    },
+    "host_sync_overhead_ms_p50": 0.009542000268993434,
+    "host_sync_overhead_percent_p50": 35.406308221369585,
+    "io_bytes": 600000,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 600576,
+      "peak_reserved_bytes": 4194304,
+      "resident_allocated_bytes": 600576,
+      "resident_reserved_bytes": 4194304
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 400000,
+      "minimum_total": 600000,
+      "output_write": 200000
+    },
+    "output_elements": 50000,
+    "output_throughput_elements_per_second": 2872242596.6865077,
+    "peak_allocated_bytes": 600576,
+    "peak_reserved_bytes": 4194304,
+    "performance_correctness": {
+      "max_abs_error": 0.0001220703125,
+      "max_rel_error": 3.041524180763561e-07,
+      "outputs": [
+        {
+          "max_abs_error": 0.0001220703125,
+          "max_rel_error": 3.041524180763561e-07,
+          "name": "output"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 13.316761259627,
+      "mean": 9.944839238029964,
+      "p50": 10.735757060524168,
+      "p90": 8.602890407307157
+    },
+    "reference_gpu_latency_ms": {
+      "max": 0.08403199911117554,
+      "mean": 0.060332800323764486,
+      "min": 0.04505600035190582,
+      "p50": 0.05588800087571144,
+      "p90": 0.06974400132894516,
+      "p99": 0.0805427184700966,
+      "stddev": 0.007987200691367274
+    },
+    "reference_wall_latency_ms": {
+      "max": 0.1174000008177245,
+      "mean": 0.073559999934029,
+      "min": 0.05580000106419902,
+      "p50": 0.07079999977577245,
+      "p90": 0.08083999910013517,
+      "p99": 0.10820700044860135,
+      "stddev": 0.010399057748004736
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 3.210477935177425,
+    "updated_at": "2026-08-10T08:40:40+00:00",
+    "wall_latency_ms": {
+      "max": 0.06849999954283703,
+      "mean": 0.033769999754440505,
+      "min": 0.025999999706982635,
+      "p50": 0.026950000574288424,
+      "p90": 0.057119998928101275,
+      "p99": 0.06716599993524142,
+      "stddev": 0.012715217891622096
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/easy/54_swiglu",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 5.960464477539063e-08,
+        "max_rel_error": 6.98219923216755e-08,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 1.52587890625e-05,
+        "max_rel_error": 1.6912751428133873e-07,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 3.0517578125e-05,
+        "max_rel_error": 2.050707012002993e-07,
+        "name": "functional_6",
+        "status": "passed"
+      }
+    ],
+    "passed": 7,
+    "total": 7,
+    "updated_at": "2026-08-10T08:40:40+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::cuda::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-10T08:40:40+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\54_swiglu\\solution\\cuda\\solution.cu",
+    "sha256": "40ca24e7b129c50316ee2b2bd82f22d1ee16084b4ab33bedccddb3b89740a41b"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-10T08:40:40+00:00"
 }
