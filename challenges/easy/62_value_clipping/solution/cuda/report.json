@@ -1,8 +1,203 @@
 {
   "backend": "cuda",
+  "backend_details": {
+    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\62_value_clipping\\cuda\\ef387256900de4fd\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\62_value_clipping\\solution\\cuda\\solution.cu",
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\62_value_clipping\\cuda\\ef387256900de4fd\\solution.dll"
+  },
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 48828.12623350222,
+    "case": {
+      "N": 100000,
+      "hi": 39.51,
+      "input": {
+        "bytes": 400000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          100000
+        ]
+      },
+      "lo": -51.24,
+      "output": {
+        "bytes": 400000,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          100000
+        ]
+      }
+    },
+    "effective_bandwidth_gbps": 39.06250098680177,
+    "effective_memory_bandwidth_gbps": {
+      "best": 46.641790450251456,
+      "mean": 31.89317948556957,
+      "p50": 39.06250098680177,
+      "p90": 16.017426973905955
+    },
+    "gpu_latency_ms": {
+      "max": 0.05119999870657921,
+      "mean": 0.02508373303959767,
+      "min": 0.017152000218629837,
+      "p50": 0.020479999482631683,
+      "p90": 0.04994559995830059,
+      "p99": 0.05112575922161341,
+      "stddev": 0.011496389746449037
+    },
+    "host_sync_overhead_ms_p50": 0.013770000288786832,
+    "host_sync_overhead_percent_p50": 40.20438067353753,
+    "io_bytes": 800000,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 800768,
+      "peak_reserved_bytes": 6291456,
+      "resident_allocated_bytes": 800768,
+      "resident_reserved_bytes": 6291456
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 400000,
+      "minimum_total": 800000,
+      "output_write": 400000
+    },
+    "output_elements": 100000,
+    "output_throughput_elements_per_second": 4882812623.350222,
+    "peak_allocated_bytes": 800768,
+    "peak_reserved_bytes": 6291456,
+    "performance_correctness": {
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "outputs": [
+        {
+          "max_abs_error": 0.0,
+          "max_rel_error": 0.0,
+          "name": "output"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 46.21072202355227,
+      "mean": 26.166137392177756,
+      "p50": 26.9396545011613,
+      "p90": 20.945039456609653
+    },
+    "reference_gpu_latency_ms": {
+      "max": 0.04505600035190582,
+      "mean": 0.03057386682679256,
+      "min": 0.017311999574303627,
+      "p50": 0.02969600073993206,
+      "p90": 0.03819520138204098,
+      "p99": 0.04505600035190582,
+      "stddev": 0.0062787593231665734
+    },
+    "reference_wall_latency_ms": {
+      "max": 0.06299999949987978,
+      "mean": 0.04317666662245756,
+      "min": 0.03299999843875412,
+      "p50": 0.04289999924367294,
+      "p90": 0.05094000061944826,
+      "p99": 0.0613759997941088,
+      "stddev": 0.006876320998020863
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 1.4500000727595779,
+    "updated_at": "2026-08-10T09:03:04+00:00",
+    "wall_latency_ms": {
+      "max": 0.07399999958579428,
+      "mean": 0.03895333326606002,
+      "min": 0.025999999706982635,
+      "p50": 0.034249999771418516,
+      "p90": 0.06032000073901145,
+      "p99": 0.07022999936452835,
+      "stddev": 0.013383142099477862
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/easy/62_value_clipping",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_6",
+        "status": "passed"
+      }
+    ],
+    "passed": 7,
+    "total": 7,
+    "updated_at": "2026-08-10T09:03:04+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::cuda::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-10T09:03:04+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\easy\\62_value_clipping\\solution\\cuda\\solution.cu",
+    "sha256": "ac8fc5546aa1c30758eeb43d13d660f3d70135b80b16be3831d74f9414487e2e"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-10T09:03:04+00:00"
 }

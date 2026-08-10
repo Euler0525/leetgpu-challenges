@@ -5,7 +5,15 @@ import triton.language as tl
 
 @triton.jit
 def clip_kernel(input, output, lo, hi, N, BLOCK_SIZE: tl.constexpr):
-    pass
+    pid = tl.program_id(axis=0)
+    offsets = pid * BLOCK_SIZE + tl.arange(0, BLOCK_SIZE)
+    mask = offsets < N
+
+    input_value = tl.load(input + offsets, mask=mask)
+    input_value = tl.maximum(lo, input_value)
+    input_value = tl.minimum(hi, input_value)
+
+    tl.store(output + offsets, input_value, mask=mask)
 
 
 # input, output are tensors on the GPU

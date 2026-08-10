@@ -1,9 +1,18 @@
 #include <cuda_runtime.h>
 
-__global__ void clip_kernel(const float* input, float* output, float lo, float hi, int N) {}
+__global__ void clip_kernel(const float *input, float *output, float lo,
+                            float hi, int N) {
+    int idx = blockDim.x * blockIdx.x + threadIdx.x;
+    if (idx > N) {
+        return;
+    }
+
+    output[idx] = min(max(input[idx], lo), hi);
+}
 
 // input, output are device pointers
-extern "C" void solve(const float* input, float* output, float lo, float hi, int N) {
+extern "C" void solve(const float *input, float *output, float lo, float hi,
+                      int N) {
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
 

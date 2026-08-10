@@ -1,1 +1,81 @@
-{"traceEvents": []}
+
+{
+  "schemaVersion": 1,
+  "deviceProperties": [
+  ],
+  "profile_memory": 1,
+  "record_shapes": 1,
+  "traceEvents": [
+  {
+    "ph": "X", "cat": "user_annotation", "name": "leetgpu::pytorch::solve", "pid": 10660, "tid": 32508,
+    "ts": 3384351743695.604, "dur": 229.700,
+    "args": {
+      "External id": 1,"Record function id": 0, "Ev Idx": 0
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::clamp", "pid": 10660, "tid": 32508,
+    "ts": 3384351743776.504, "dur": 33.800,
+    "args": {
+      "External id": 2,"Record function id": 0, "Sequence number": 0, "Input type": ["float", "Scalar", "Scalar", "float"], "Ev Idx": 1, "Input Dims": [[100000], [], [], [100000]], "Input Strides": [[1], [], [], [1]], "Concrete Inputs": ["", "-51.240000000000002", "39.509999999999998", ""], "Fwd thread id": 0
+    }
+  },
+  {
+    "ph": "X", "cat": "cpu_op", "name": "aten::to", "pid": 10660, "tid": 32508,
+    "ts": 3384351743786.804, "dur": 1.700,
+    "args": {
+      "External id": 3,"Record function id": 0, "Input type": ["float", "Scalar", "Scalar", "Scalar", ""], "Ev Idx": 2, "Input Dims": [[100000], [], [], [], []], "Input Strides": [[1], [], [], [], []], "Concrete Inputs": ["", "6", "False", "False", ""]
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3384351743219.600, "pid": 10660, "tid": 32508,
+    "args": {
+      "name": "thread 32508 ()"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3384351743219.600, "pid": 10660, "tid": 32508,
+    "args": {
+      "sort_index": 32508
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3384351743219.600, "pid": 10660, "tid": 32508,
+    "args": {
+      "name": "thread 32508 ()"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3384351743219.600, "pid": 10660, "tid": 32508,
+    "args": {
+      "sort_index": 32508
+    }
+  },
+  {
+    "ph": "X", "cat": "Trace", "ts": 3384351743163.000, "dur": 796.800,
+    "pid": "Spans", "tid": "PyTorch Profiler",
+    "name": "PyTorch Profiler (0)",
+    "args": {
+      "Op count": 0
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3384351743163.000,
+    "pid": "Spans", "tid": 0,
+    "args": {
+      "sort_index": 536870912
+    }
+  },
+  {
+    "name": "Iteration Start: PyTorch Profiler", "ph": "i", "s": "g",
+    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 3384351743163.000
+  },
+  {
+    "name": "Record Window End", "ph": "i", "s": "g",
+    "pid": "", "tid": "", "ts": 3384351744092.400
+  }
+  ],
+  "traceName": "C:/Syncdisk/leetgpu-challenges/challenges/easy/62_value_clipping/solution/pytorch/profile_trace.json",
+  "displayTimeUnit": "ms",
+  "baseTimeNanoseconds": 1782967788000000000
+}

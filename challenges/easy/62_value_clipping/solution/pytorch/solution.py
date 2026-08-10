@@ -3,4 +3,4 @@ import torch
 
 # input, output are tensors on the GPU
 def solve(input: torch.Tensor, output: torch.Tensor, lo: float, hi: float, N: int):
-    pass
+    torch.clamp(input=input, min=lo, max=hi, out=output)
