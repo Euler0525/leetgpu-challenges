@@ -1,6 +1,7 @@
 import torch
+import torch.nn.functional as F
 
 
-# input, output are tensors on the GPU
 def solve(input: torch.Tensor, output: torch.Tensor, N: int):
-    pass
+    # output.copy_(F.silu(input))
+    torch.mul(input, torch.sigmoid(input), out=output)
