@@ -1,1 +1,67 @@
-{"traceEvents": []}
+
+{
+  "schemaVersion": 1,
+  "deviceProperties": [
+  ],
+  "profile_memory": 1,
+  "record_shapes": 1,
+  "traceEvents": [
+  {
+    "ph": "X", "cat": "user_annotation", "name": "leetgpu::cuda::solve", "pid": 15296, "tid": 14352,
+    "ts": 3377935071037.258, "dur": 1836.300,
+    "args": {
+      "External id": 1,"Record function id": 0, "Ev Idx": 0
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3377935070533.600, "pid": 15296, "tid": 14352,
+    "args": {
+      "name": "thread 14352 ()"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3377935070533.600, "pid": 15296, "tid": 14352,
+    "args": {
+      "sort_index": 14352
+    }
+  },
+  {
+    "name": "thread_name", "ph": "M", "ts": 3377935070533.600, "pid": 15296, "tid": 14352,
+    "args": {
+      "name": "thread 14352 ()"
+    }
+  },
+  {
+    "name": "thread_sort_index", "ph": "M", "ts": 3377935070533.600, "pid": 15296, "tid": 14352,
+    "args": {
+      "sort_index": 14352
+    }
+  },
+  {
+    "ph": "X", "cat": "Trace", "ts": 3377935070473.900, "dur": 2443.700,
+    "pid": "Spans", "tid": "PyTorch Profiler",
+    "name": "PyTorch Profiler (0)",
+    "args": {
+      "Op count": 0
+    }
+  },
+  {
+    "name": "process_sort_index", "ph": "M", "ts": 3377935070473.900,
+    "pid": "Spans", "tid": 0,
+    "args": {
+      "sort_index": 536870912
+    }
+  },
+  {
+    "name": "Iteration Start: PyTorch Profiler", "ph": "i", "s": "g",
+    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 3377935070473.900
+  },
+  {
+    "name": "Record Window End", "ph": "i", "s": "g",
+    "pid": "", "tid": "", "ts": 3377935073038.700
+  }
+  ],
+  "traceName": "C:/Syncdisk/leetgpu-challenges/challenges/easy/23_leaky_relu/solution/cuda/profile_trace.json",
+  "displayTimeUnit": "ms",
+  "baseTimeNanoseconds": 1782967788000000000
+}
