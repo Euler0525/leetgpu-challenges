@@ -1,8 +1,209 @@
 {
   "backend": "triton",
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 20458.265278320265,
+    "case": {
+      "N": 4194304,
+      "input": {
+        "bytes": 16777216,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          4194304
+        ]
+      },
+      "output": {
+        "bytes": 4,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          1
+        ]
+      }
+    },
+    "effective_bandwidth_gbps": 343.23281739274034,
+    "effective_memory_bandwidth_gbps": {
+      "best": 409.92036073207487,
+      "mean": 309.56412719489526,
+      "p50": 343.23281739274034,
+      "p90": 240.90801601625736
+    },
+    "gpu_latency_ms": {
+      "max": 0.07996799796819687,
+      "mean": 0.054196266705791155,
+      "min": 0.04092799872159958,
+      "p50": 0.04887999966740608,
+      "p90": 0.0696416012942791,
+      "p99": 0.07934623755514622,
+      "stddev": 0.01169810876291906
+    },
+    "host_sync_overhead_ms_p50": 0.013720000424655154,
+    "host_sync_overhead_percent_p50": 21.916933553479478,
+    "io_bytes": 16777220,
+    "memory": {
+      "incremental_peak_allocated_bytes": 1024,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 16778752,
+      "peak_reserved_bytes": 62914560,
+      "resident_allocated_bytes": 16777728,
+      "resident_reserved_bytes": 62914560
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 16777216,
+      "minimum_total": 16777220,
+      "output_write": 4
+    },
+    "output_elements": 1,
+    "output_throughput_elements_per_second": 20458.265278320265,
+    "peak_allocated_bytes": 16778752,
+    "peak_reserved_bytes": 62914560,
+    "performance_correctness": {
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "outputs": [
+        {
+          "max_abs_error": 0.0,
+          "max_rel_error": 0.0,
+          "name": "output"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 55.91810396773031,
+      "mean": 53.53138091939338,
+      "p50": 54.522474925698305,
+      "p90": 50.80754403500662
+    },
+    "reference_gpu_latency_ms": {
+      "max": 0.35225600004196167,
+      "mean": 0.31340906421343484,
+      "min": 0.30003198981285095,
+      "p50": 0.30771200358867645,
+      "p90": 0.33021119832992557,
+      "p99": 0.34869247883558274,
+      "stddev": 0.012337416897658925
+    },
+    "reference_wall_latency_ms": {
+      "max": 0.3826000001936336,
+      "mean": 0.3313266666130706,
+      "min": 0.31189999981506844,
+      "p50": 0.32539999983782764,
+      "p90": 0.35726000000977365,
+      "p99": 0.3797870001380943,
+      "stddev": 0.017439475051155937
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 6.29525379874058,
+    "updated_at": "2026-08-11T02:28:29+00:00",
+    "wall_latency_ms": {
+      "max": 0.09100000033868128,
+      "mean": 0.06635666665412525,
+      "min": 0.05089999967822223,
+      "p50": 0.06260000009206124,
+      "p90": 0.07975999978953041,
+      "p99": 0.08998500025882095,
+      "stddev": 0.011130968385029433
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/medium/4_reduction",
-  "message": "Run scripts/local_practice.py to generate this report.",
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_6",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0078125,
+        "max_rel_error": 1.5088220068328514e-07,
+        "name": "functional_7",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_8",
+        "status": "passed"
+      }
+    ],
+    "passed": 9,
+    "total": 9,
+    "updated_at": "2026-08-11T02:28:29+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "torch_cuda": "12.4",
+    "triton": "3.1.0"
+  },
+  "errors": [],
+  "mode": "run",
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::triton::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-11T02:28:29+00:00"
+  },
   "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "solution": {
+    "path": "challenges\\medium\\4_reduction\\solution\\triton\\solution.py",
+    "sha256": "7b145bfb315819b04626471a18c3eb93f978b30f5a4c7c4f4ed237a22b6d783c"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-11T02:28:29+00:00"
 }
