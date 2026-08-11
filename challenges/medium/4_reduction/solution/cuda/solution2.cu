@@ -14,33 +14,26 @@ __device__ __forceinline__ float warpReduceSum(float value) {
 
 __global__ void reduceKernel(const float *input, float *output, int N) {
     int idx = blockDim.x * blockIdx.x * 2 + threadIdx.x;
-    int stride = blockDim.x * gridDim.x * 2;
-    __shared__ float warpSum[BLOCK_SIZE / 32];
-
-    // Grid-Stride Loop
+    __shared__ float shared[BLOCK_SIZE];
     float sum = 0.0f;
-    for (int i = idx; i < N; i += stride) {
-        sum += input[i];
-        if (i + BLOCK_SIZE < N) {
-            sum += input[i + BLOCK_SIZE];
-        }
+    if (idx < N) {
+        sum += input[idx];
     }
-    sum = warpReduceSum(sum);
-
-    int lane = threadIdx.x & 31;
-    int warpId = threadIdx.x >> 5;
-    if (lane == 0) {
-        warpSum[warpId] = sum;
+    if (idx + BLOCK_SIZE < N) {
+        sum += input[idx + BLOCK_SIZE];
     }
+    shared[threadIdx.x] = sum;
     __syncthreads();
 
-    if (warpId == 0) {
-        float blockSum = lane < BLOCK_SIZE / 32 ? warpSum[lane] : 0.0f;
-        blockSum = warpReduceSum(blockSum);
-
-        if (lane == 0) {
-            atomicAdd(output, blockSum);
+    for (int offset = BLOCK_SIZE >> 1; offset > 0; offset >>= 1) {
+        if (threadIdx.x < offset) {
+            shared[threadIdx.x] += shared[threadIdx.x + offset];
         }
+        __syncthreads();
+    }
+
+    if (threadIdx.x == 0) {
+        atomicAdd(output, shared[0]);
     }
 }
 
@@ -52,7 +45,6 @@ extern "C" void solve(const float *input, float *output, int N) {
 
     int elementsPerBlock = BLOCK_SIZE * 2;
     int BlocksPerGrid = (N + elementsPerBlock - 1) / elementsPerBlock;
-    BlocksPerGrid = BlocksPerGrid > 1024 ? 1024 : BlocksPerGrid;
 
     reduceKernel<<<BlocksPerGrid, BLOCK_SIZE>>>(input, output, N);
 }

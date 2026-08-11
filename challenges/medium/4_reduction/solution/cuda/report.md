@@ -2,7 +2,7 @@
 
 - Backend: `cuda`
 - Status: **passed**
-- Updated: 2026-08-11T02:36:24+00:00
+- Updated: 2026-08-11T08:58:51+00:00
 
 ## Correctness
 
@@ -17,24 +17,24 @@ Passed 9/9 cases.
 | functional_4 | passed | 0 | 0 |
 | functional_5 | passed | 0 | 0 |
 | functional_6 | passed | 0 | 0 |
-| functional_7 | passed | 0 | 0 |
-| functional_8 | passed | 0 | 0 |
+| functional_7 | passed | 0.00390625 | 7.54411e-08 |
+| functional_8 | passed | 5632 | 7.5105e-07 |
 
 ## Benchmark
 
 | Metric | Value |
 |---|---:|
-| GPU latency p50 | 0.338528 ms |
-| GPU latency p90 | 0.381322 ms |
-| GPU latency p99 | 0.422647 ms |
-| End-to-end latency p50 | 0.3648 ms |
-| Host/sync overhead p50 | 0.026272 ms |
-| Host/sync overhead ratio p50 | 7.20175 % |
-| Call throughput | 2953.97 calls/s |
-| Output element throughput | 2953.97 elements/s |
-| Reference speedup | 0.990642 x |
-| Reference GPU latency p50 | 0.33536 ms |
-| Reference effective bandwidth p50 | 50.0275 GB/s |
+| GPU latency p50 | 0.024576 ms |
+| GPU latency p90 | 0.0267104 ms |
+| GPU latency p99 | 0.0363725 ms |
+| End-to-end latency p50 | 0.03435 ms |
+| Host/sync overhead p50 | 0.009774 ms |
+| Host/sync overhead ratio p50 | 28.4541 % |
+| Call throughput | 40690.1 calls/s |
+| Output element throughput | 40690.1 elements/s |
+| Reference speedup | 12.4167 x |
+| Reference GPU latency p50 | 0.305152 ms |
+| Reference effective bandwidth p50 | 54.9799 GB/s |
 
 ### Memory traffic and effective bandwidth
 
@@ -45,10 +45,10 @@ Passed 9/9 cases.
 | In-place reads | 0 bytes |
 | In-place writes | 0 bytes |
 | Minimum total traffic | 16,777,220 bytes |
-| Effective bandwidth, best | 56.8581 GB/s |
-| Effective bandwidth, p50 | 49.5593 GB/s |
-| Effective bandwidth, mean | 49.2644 GB/s |
-| Effective bandwidth, p90 latency | 43.9976 GB/s |
+| Effective bandwidth, best | 712.348 GB/s |
+| Effective bandwidth, p50 | 682.667 GB/s |
+| Effective bandwidth, mean | 663.796 GB/s |
+| Effective bandwidth, p90 latency | 628.116 GB/s |
 | Arithmetic throughput | n/a (challenge has no generic FLOP count) |
 
 ### Performance-case validation and memory
@@ -56,8 +56,8 @@ Passed 9/9 cases.
 | Metric | Value |
 |---|---:|
 | Performance output status | passed |
-| Performance max absolute error | 128 |
-| Performance max relative error | 6.10225e-08 |
+| Performance max absolute error | 896 |
+| Performance max relative error | 4.27158e-07 |
 | Resident PyTorch allocation | 16,777,728 bytes |
 | Resident PyTorch reservation | 62,914,560 bytes |
 | Incremental peak allocation | 0 bytes |

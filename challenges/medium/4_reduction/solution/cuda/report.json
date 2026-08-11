@@ -1,15 +1,15 @@
 {
   "backend": "cuda",
   "backend_details": {
-    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\fe90cb03fdb2c470\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\medium\\4_reduction\\solution\\cuda\\solution.cu",
-    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\fe90cb03fdb2c470\\solution.dll"
+    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\f7cff163dde7fe29\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\medium\\4_reduction\\solution\\cuda\\solution.cu",
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\f7cff163dde7fe29\\solution.dll"
   },
   "benchmark": {
     "arithmetic_throughput": {
       "reason": "Challenge metadata does not define a generic operation count.",
       "status": "unavailable"
     },
-    "calls_per_second": 2953.9653397293714,
+    "calls_per_second": 40690.102727422935,
     "case": {
       "N": 4194304,
       "input": {
@@ -29,24 +29,24 @@
         ]
       }
     },
-    "effective_bandwidth_gbps": 49.55932637701441,
+    "effective_bandwidth_gbps": 682.6668052805746,
     "effective_memory_bandwidth_gbps": {
-      "best": 56.858057045407556,
-      "mean": 49.26439585632953,
-      "p50": 49.55932637701441,
-      "p90": 43.99756039947262
+      "best": 712.3479801170733,
+      "mean": 663.795889749496,
+      "p50": 682.6668052805746,
+      "p90": 628.1156450753463
     },
     "gpu_latency_ms": {
-      "max": 0.42265599966049194,
-      "mean": 0.34055466850598654,
-      "min": 0.2950719892978668,
-      "p50": 0.33852800726890564,
-      "p90": 0.38132159709930424,
-      "p99": 0.42264671742916105,
-      "stddev": 0.03430966238334386
+      "max": 0.03993599861860275,
+      "mean": 0.02527466689546903,
+      "min": 0.023552000522613525,
+      "p50": 0.02457600086927414,
+      "p90": 0.026710399799048903,
+      "p99": 0.03637247903272511,
+      "stddev": 0.0029228697163173937
     },
-    "host_sync_overhead_ms_p50": 0.02627199244670919,
-    "host_sync_overhead_percent_p50": 7.201752321049865,
+    "host_sync_overhead_ms_p50": 0.009773999208846362,
+    "host_sync_overhead_percent_p50": 28.454146103690945,
     "io_bytes": 16777220,
     "memory": {
       "incremental_peak_allocated_bytes": 0,
@@ -65,56 +65,56 @@
       "output_write": 4
     },
     "output_elements": 1,
-    "output_throughput_elements_per_second": 2953.9653397293714,
+    "output_throughput_elements_per_second": 40690.102727422935,
     "peak_allocated_bytes": 16777728,
     "peak_reserved_bytes": 62914560,
     "performance_correctness": {
-      "max_abs_error": 128.0,
-      "max_rel_error": 6.102253757584797e-08,
+      "max_abs_error": 896.0,
+      "max_rel_error": 4.2715776303093577e-07,
       "outputs": [
         {
-          "max_abs_error": 128.0,
-          "max_rel_error": 6.102253757584797e-08,
+          "max_abs_error": 896.0,
+          "max_rel_error": 4.2715776303093577e-07,
           "name": "output"
         }
       ],
       "status": "passed"
     },
     "reference_effective_memory_bandwidth_gbps": {
-      "best": 51.04051068600538,
-      "mean": 49.433784519702655,
-      "p50": 50.02749424624276,
-      "p90": 47.46278089689255
+      "best": 55.959881819650654,
+      "mean": 54.683598675605765,
+      "p50": 54.979879060794,
+      "p90": 53.22614015267727
     },
     "reference_gpu_latency_ms": {
-      "max": 0.392192006111145,
-      "mean": 0.33938773175080617,
-      "min": 0.32870399951934814,
-      "p50": 0.33535999059677124,
-      "p90": 0.35348160564899445,
-      "p99": 0.3823737648129463,
-      "stddev": 0.012330321971583097
+      "max": 0.31942400336265564,
+      "mean": 0.3068053384621938,
+      "min": 0.29980799555778503,
+      "p50": 0.3051519989967346,
+      "p90": 0.31520639955997465,
+      "p99": 0.31884864330291746,
+      "stddev": 0.005288605682873584
     },
     "reference_wall_latency_ms": {
-      "max": 0.44319999960862333,
-      "mean": 0.35807000000810757,
-      "min": 0.34219999997731065,
-      "p50": 0.3495999999358901,
-      "p90": 0.3797099996518227,
-      "p99": 0.43052699990767,
-      "stddev": 0.020865859681435166
+      "max": 0.3519000001688255,
+      "mean": 0.3213533333412973,
+      "min": 0.31189999981506844,
+      "p50": 0.31874999990577635,
+      "p90": 0.3336499998567888,
+      "p99": 0.3474050000977513,
+      "stddev": 0.00876841811294715
     },
     "repeat": 30,
-    "speedup_vs_reference": 0.9906417885548302,
-    "updated_at": "2026-08-11T02:36:24+00:00",
+    "speedup_vs_reference": 12.416666186655592,
+    "updated_at": "2026-08-11T08:58:51+00:00",
     "wall_latency_ms": {
-      "max": 0.43960000039078295,
-      "mean": 0.3674466666780063,
-      "min": 0.309699999888835,
-      "p50": 0.36479999971561483,
-      "p90": 0.40997000023708097,
-      "p99": 0.4393970001638081,
-      "stddev": 0.032824683123104964
+      "max": 0.06459999985963805,
+      "mean": 0.036959999988539494,
+      "min": 0.03319999996165279,
+      "p50": 0.0343500000781205,
+      "p90": 0.04107999989173551,
+      "p99": 0.06016299983457431,
+      "stddev": 0.006470270415165347
     },
     "warmup": 5
   },
@@ -164,21 +164,21 @@
         "status": "passed"
       },
       {
-        "max_abs_error": 0.0,
-        "max_rel_error": 0.0,
+        "max_abs_error": 0.00390625,
+        "max_rel_error": 7.544110034164257e-08,
         "name": "functional_7",
         "status": "passed"
       },
       {
-        "max_abs_error": 0.0,
-        "max_rel_error": 0.0,
+        "max_abs_error": 5632.0,
+        "max_rel_error": 7.510496943637408e-07,
         "name": "functional_8",
         "status": "passed"
       }
     ],
     "passed": 9,
     "total": 9,
-    "updated_at": "2026-08-11T02:36:24+00:00"
+    "updated_at": "2026-08-11T08:58:51+00:00"
   },
   "environment": {
     "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
@@ -201,13 +201,13 @@
     "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
     "range": "leetgpu::cuda::solve",
     "trace": "profile_trace.json",
-    "updated_at": "2026-08-11T02:36:24+00:00"
+    "updated_at": "2026-08-11T08:58:51+00:00"
   },
   "schema_version": 2,
   "solution": {
     "path": "challenges\\medium\\4_reduction\\solution\\cuda\\solution.cu",
-    "sha256": "6cb21dcd9bcb101d94700270c95a6da2178fdaeb349f964ee1478661a7e2ce23"
+    "sha256": "6630a7783faeceef1f17df7bdf3600e5e065e90844ebc67ec2f8c03bec4e5fb9"
   },
   "status": "passed",
-  "updated_at": "2026-08-11T02:36:24+00:00"
+  "updated_at": "2026-08-11T08:58:51+00:00"
 }

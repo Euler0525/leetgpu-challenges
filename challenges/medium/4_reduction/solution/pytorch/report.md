@@ -2,7 +2,7 @@
 
 - Backend: `pytorch`
 - Status: **passed**
-- Updated: 2026-08-11T01:31:30+00:00
+- Updated: 2026-08-11T08:59:24+00:00
 
 ## Correctness
 
@@ -24,17 +24,17 @@ Passed 9/9 cases.
 
 | Metric | Value |
 |---|---:|
-| GPU latency p50 | 0.034816 ms |
-| GPU latency p90 | 0.0357248 ms |
-| GPU latency p99 | 0.0375446 ms |
-| End-to-end latency p50 | 0.0466 ms |
-| Host/sync overhead p50 | 0.011784 ms |
-| Host/sync overhead ratio p50 | 25.2876 % |
-| Call throughput | 28722.4 calls/s |
-| Output element throughput | 28722.4 elements/s |
-| Reference speedup | 8.73529 x |
-| Reference GPU latency p50 | 0.304128 ms |
-| Reference effective bandwidth p50 | 55.165 GB/s |
+| GPU latency p50 | 0.03584 ms |
+| GPU latency p90 | 0.0379904 ms |
+| GPU latency p99 | 0.0539491 ms |
+| End-to-end latency p50 | 0.04795 ms |
+| Host/sync overhead p50 | 0.01211 ms |
+| Host/sync overhead ratio p50 | 25.2555 % |
+| Call throughput | 27901.8 calls/s |
+| Output element throughput | 27901.8 elements/s |
+| Reference speedup | 8.45714 x |
+| Reference GPU latency p50 | 0.303104 ms |
+| Reference effective bandwidth p50 | 55.3514 GB/s |
 
 ### Memory traffic and effective bandwidth
 
@@ -46,9 +46,9 @@ Passed 9/9 cases.
 | In-place writes | 0 bytes |
 | Minimum total traffic | 16,777,220 bytes |
 | Effective bandwidth, best | 512 GB/s |
-| Effective bandwidth, p50 | 481.882 GB/s |
-| Effective bandwidth, mean | 482.222 GB/s |
-| Effective bandwidth, p90 latency | 469.624 GB/s |
+| Effective bandwidth, p50 | 468.114 GB/s |
+| Effective bandwidth, mean | 454.638 GB/s |
+| Effective bandwidth, p90 latency | 441.617 GB/s |
 | Arithmetic throughput | n/a (challenge has no generic FLOP count) |
 
 ### Performance-case validation and memory
