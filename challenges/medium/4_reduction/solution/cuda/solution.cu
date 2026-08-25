@@ -8,38 +8,42 @@ __device__ __forceinline__ float warpReduceSum(float value) {
     value += __shfl_down_sync(0xffffffff, value, 4);
     value += __shfl_down_sync(0xffffffff, value, 2);
     value += __shfl_down_sync(0xffffffff, value, 1);
-
     return value;
 }
 
 __global__ void reduceKernel(const float *input, float *output, int N) {
-    int idx = blockDim.x * blockIdx.x * 2 + threadIdx.x;
-    int stride = blockDim.x * gridDim.x * 2;
-    __shared__ float warpSum[BLOCK_SIZE / 32];
+    int idx = blockDim.x * blockIdx.x + threadIdx.x;
+    int stride = gridDim.x * blockDim.x;
+    int tid = threadIdx.x;
+    __shared__ float shared[BLOCK_SIZE / 32];
 
-    // Grid-Stride Loop
-    float sum = 0.0f;
-    for (int i = idx; i < N; i += stride) {
-        sum += input[i];
-        if (i + BLOCK_SIZE < N) {
-            sum += input[i + BLOCK_SIZE];
-        }
+    double sum = 0.0f;
+    const float4 *input4 = reinterpret_cast<const float4 *>(input);
+    for (int i = idx; i < N / 4; i += stride) {
+        float4 value = input4[i];
+        sum += value.x + value.y + value.z + value.w;
     }
+
+    int tail = N / 4 * 4;
+    for (int i = idx + tail; i < N; i += stride) {
+        sum += input[i];
+    }
+
     sum = warpReduceSum(sum);
 
-    int lane = threadIdx.x & 31;
-    int warpId = threadIdx.x >> 5;
-    if (lane == 0) {
-        warpSum[warpId] = sum;
+    int lane_id = tid % 32;
+    int warp_id = tid >> 5;
+
+    if (lane_id == 0) {
+        shared[warp_id] = sum;
     }
     __syncthreads();
 
-    if (warpId == 0) {
-        float blockSum = lane < BLOCK_SIZE / 32 ? warpSum[lane] : 0.0f;
-        blockSum = warpReduceSum(blockSum);
-
-        if (lane == 0) {
-            atomicAdd(output, blockSum);
+    if (warp_id == 0) {
+        double warp_sum = lane_id < BLOCK_SIZE / 32 ? shared[lane_id] : 0.0f;
+        double block_sum = warpReduceSum(warp_sum);
+        if (lane_id == 0) {
+            atomicAdd(output, block_sum);
         }
     }
 }
@@ -50,9 +54,10 @@ extern "C" void solve(const float *input, float *output, int N) {
         return;
     }
 
-    int elementsPerBlock = BLOCK_SIZE * 2;
+    int ThreadsPerBlock = BLOCK_SIZE;
+    int elementsPerBlock = ThreadsPerBlock;
     int BlocksPerGrid = (N + elementsPerBlock - 1) / elementsPerBlock;
     BlocksPerGrid = BlocksPerGrid > 1024 ? 1024 : BlocksPerGrid;
 
-    reduceKernel<<<BlocksPerGrid, BLOCK_SIZE>>>(input, output, N);
+    reduceKernel<<<BlocksPerGrid, ThreadsPerBlock>>>(input, output, N);
 }

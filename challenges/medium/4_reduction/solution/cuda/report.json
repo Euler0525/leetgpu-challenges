@@ -1,15 +1,37 @@
 {
   "backend": "cuda",
   "backend_details": {
-    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\f7cff163dde7fe29\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\medium\\4_reduction\\solution\\cuda\\solution.cu",
-    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\f7cff163dde7fe29\\solution.dll"
+    "build_cache_key": "e0c1b4e2d54866c5",
+    "compile_command": [
+      "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+      "-O3",
+      "-lineinfo",
+      "-arch=sm_89",
+      "--shared",
+      "-Xlinker",
+      "/EXPORT:solve",
+      "-o",
+      "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\e0c1b4e2d54866c5\\solution.dll",
+      "C:\\Syncdisk\\leetgpu-challenges\\challenges\\medium\\4_reduction\\solution\\cuda\\solution.cu"
+    ],
+    "compile_flags": [
+      "-O3",
+      "-lineinfo",
+      "-arch=sm_89",
+      "--shared",
+      "-Xlinker",
+      "/EXPORT:solve"
+    ],
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\4_reduction\\cuda\\e0c1b4e2d54866c5\\solution.dll",
+    "nvcc_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+    "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0"
   },
   "benchmark": {
     "arithmetic_throughput": {
       "reason": "Challenge metadata does not define a generic operation count.",
       "status": "unavailable"
     },
-    "calls_per_second": 40690.102727422935,
+    "calls_per_second": 22710.755811248124,
     "case": {
       "N": 4194304,
       "input": {
@@ -29,24 +51,24 @@
         ]
       }
     },
-    "effective_bandwidth_gbps": 682.6668052805746,
+    "effective_bandwidth_gbps": 381.02334661158824,
     "effective_memory_bandwidth_gbps": {
-      "best": 712.3479801170733,
-      "mean": 663.795889749496,
-      "p50": 682.6668052805746,
-      "p90": 628.1156450753463
+      "best": 409.6001080036191,
+      "mean": 365.81644194750436,
+      "p50": 381.02334661158824,
+      "p90": 348.59582040923857
     },
     "gpu_latency_ms": {
-      "max": 0.03993599861860275,
-      "mean": 0.02527466689546903,
-      "min": 0.023552000522613525,
-      "p50": 0.02457600086927414,
-      "p90": 0.026710399799048903,
-      "p99": 0.03637247903272511,
-      "stddev": 0.0029228697163173937
+      "max": 0.07168000191450119,
+      "mean": 0.04586240003506343,
+      "min": 0.04095999896526337,
+      "p50": 0.04403200000524521,
+      "p90": 0.04812800101935865,
+      "p99": 0.06960128121078014,
+      "stddev": 0.006579257394268719
     },
-    "host_sync_overhead_ms_p50": 0.009773999208846362,
-    "host_sync_overhead_percent_p50": 28.454146103690945,
+    "host_sync_overhead_ms_p50": 0.012717995559796691,
+    "host_sync_overhead_percent_p50": 22.410566614442168,
     "io_bytes": 16777220,
     "memory": {
       "incremental_peak_allocated_bytes": 0,
@@ -65,56 +87,56 @@
       "output_write": 4
     },
     "output_elements": 1,
-    "output_throughput_elements_per_second": 40690.102727422935,
+    "output_throughput_elements_per_second": 22710.755811248124,
     "peak_allocated_bytes": 16777728,
     "peak_reserved_bytes": 62914560,
     "performance_correctness": {
-      "max_abs_error": 896.0,
-      "max_rel_error": 4.2715776303093577e-07,
+      "max_abs_error": 768.0,
+      "max_rel_error": 3.661352254550878e-07,
       "outputs": [
         {
-          "max_abs_error": 896.0,
-          "max_rel_error": 4.2715776303093577e-07,
+          "max_abs_error": 768.0,
+          "max_rel_error": 3.661352254550878e-07,
           "name": "output"
         }
       ],
       "status": "passed"
     },
     "reference_effective_memory_bandwidth_gbps": {
-      "best": 55.959881819650654,
-      "mean": 54.683598675605765,
-      "p50": 54.979879060794,
-      "p90": 53.22614015267727
+      "best": 56.109600200999814,
+      "mean": 53.60106769962236,
+      "p50": 54.3416361592772,
+      "p90": 51.32833110710374
     },
     "reference_gpu_latency_ms": {
-      "max": 0.31942400336265564,
-      "mean": 0.3068053384621938,
-      "min": 0.29980799555778503,
-      "p50": 0.3051519989967346,
-      "p90": 0.31520639955997465,
-      "p99": 0.31884864330291746,
-      "stddev": 0.005288605682873584
+      "max": 0.3389439880847931,
+      "mean": 0.3130016009012858,
+      "min": 0.29900801181793213,
+      "p50": 0.30873601138591766,
+      "p90": 0.3268608123064041,
+      "p99": 0.3380531099438667,
+      "stddev": 0.011011647927166659
     },
     "reference_wall_latency_ms": {
-      "max": 0.3519000001688255,
-      "mean": 0.3213533333412973,
-      "min": 0.31189999981506844,
-      "p50": 0.31874999990577635,
-      "p90": 0.3336499998567888,
-      "p99": 0.3474050000977513,
-      "stddev": 0.00876841811294715
+      "max": 0.632800001767464,
+      "mean": 0.33896666621634114,
+      "min": 0.31319999834522605,
+      "p50": 0.3281999997852836,
+      "p90": 0.34175999826402403,
+      "p99": 0.556472000826034,
+      "stddev": 0.05602911973430934
     },
     "repeat": 30,
-    "speedup_vs_reference": 12.416666186655592,
-    "updated_at": "2026-08-11T08:58:51+00:00",
+    "speedup_vs_reference": 7.011628164724296,
+    "updated_at": "2026-08-25T11:42:39+00:00",
     "wall_latency_ms": {
-      "max": 0.06459999985963805,
-      "mean": 0.036959999988539494,
-      "min": 0.03319999996165279,
-      "p50": 0.0343500000781205,
-      "p90": 0.04107999989173551,
-      "p99": 0.06016299983457431,
-      "stddev": 0.006470270415165347
+      "max": 0.11670000094454736,
+      "mean": 0.06137666568974964,
+      "min": 0.05360000068321824,
+      "p50": 0.0567499955650419,
+      "p90": 0.06397999750333841,
+      "p99": 0.11307500077236911,
+      "stddev": 0.014130550669185567
     },
     "warmup": 5
   },
@@ -164,21 +186,21 @@
         "status": "passed"
       },
       {
-        "max_abs_error": 0.00390625,
-        "max_rel_error": 7.544110034164257e-08,
+        "max_abs_error": 0.0078125,
+        "max_rel_error": 1.5088220068328514e-07,
         "name": "functional_7",
         "status": "passed"
       },
       {
-        "max_abs_error": 5632.0,
-        "max_rel_error": 7.510496943637408e-07,
+        "max_abs_error": 1536.0,
+        "max_rel_error": 2.0483173482647475e-07,
         "name": "functional_8",
         "status": "passed"
       }
     ],
     "passed": 9,
     "total": 9,
-    "updated_at": "2026-08-11T08:58:51+00:00"
+    "updated_at": "2026-08-25T11:42:39+00:00"
   },
   "environment": {
     "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
@@ -186,28 +208,58 @@
       8,
       9
     ],
-    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
-    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 610.88, 8188 MiB",
     "platform": "Windows-11-10.0.26200-SP0",
-    "python": "3.12.3",
-    "torch": "2.5.1+cu124",
-    "torch_cuda": "12.4",
-    "triton": "3.1.0"
+    "python": "3.14.6",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "triton": "3.7.1"
   },
   "errors": [],
   "mode": "run",
+  "native_profiles": {
+    "ncu": {
+      "error": null,
+      "file": "solution.ncu-rep",
+      "format": "Nsight Compute report",
+      "generated_at": "2026-08-25T10:14:10+00:00",
+      "metric_set": "detailed",
+      "open_command": "ncu-ui solution.ncu-rep",
+      "size_bytes": 224502,
+      "solution_sha256": "b36aaf618141b66a12ceb2c05d89155f8014146407bdc0e9d149f1507ebef777",
+      "source_embedded": true,
+      "status": "stale",
+      "tool_path": "C:\\Program Files\\NVIDIA Corporation\\Nsight Compute 2026.2.0\\target\\windows-desktop-win7-x64\\ncu.exe",
+      "tool_version": "NVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2026 NVIDIA Corporation\nVersion 2026.2.0.0 (build 37790515) (public-release)"
+    },
+    "nsys": {
+      "error": null,
+      "file": "solution.nsys-rep",
+      "format": "Nsight Systems report",
+      "generated_at": "2026-08-25T10:14:07+00:00",
+      "metric_set": null,
+      "open_command": "nsys-ui solution.nsys-rep",
+      "size_bytes": 56723,
+      "solution_sha256": "b36aaf618141b66a12ceb2c05d89155f8014146407bdc0e9d149f1507ebef777",
+      "source_embedded": false,
+      "status": "stale",
+      "tool_path": "C:\\Program Files\\NVIDIA Corporation\\Nsight Systems 2026.1.3\\target-windows-x64\\nsys.exe",
+      "tool_version": "NVIDIA Nsight Systems version 2026.1.3.243-261337792075v0"
+    }
+  },
   "profile": {
     "format": "PyTorch Profiler Chrome trace JSON",
     "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
     "range": "leetgpu::cuda::solve",
     "trace": "profile_trace.json",
-    "updated_at": "2026-08-11T08:58:51+00:00"
+    "updated_at": "2026-08-25T11:42:39+00:00"
   },
-  "schema_version": 2,
+  "schema_version": 3,
   "solution": {
     "path": "challenges\\medium\\4_reduction\\solution\\cuda\\solution.cu",
-    "sha256": "6630a7783faeceef1f17df7bdf3600e5e065e90844ebc67ec2f8c03bec4e5fb9"
+    "sha256": "5ffc199d4e31d4958c37e921dccbbc235147f0c0fba74be73af5cd6423a98c7c"
   },
   "status": "passed",
-  "updated_at": "2026-08-11T08:58:51+00:00"
+  "updated_at": "2026-08-25T11:42:39+00:00"
 }

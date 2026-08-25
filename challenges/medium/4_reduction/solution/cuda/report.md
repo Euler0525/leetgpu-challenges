@@ -2,7 +2,7 @@
 
 - Backend: `cuda`
 - Status: **passed**
-- Updated: 2026-08-11T08:58:51+00:00
+- Updated: 2026-08-25T11:42:39+00:00
 
 ## Correctness
 
@@ -17,24 +17,24 @@ Passed 9/9 cases.
 | functional_4 | passed | 0 | 0 |
 | functional_5 | passed | 0 | 0 |
 | functional_6 | passed | 0 | 0 |
-| functional_7 | passed | 0.00390625 | 7.54411e-08 |
-| functional_8 | passed | 5632 | 7.5105e-07 |
+| functional_7 | passed | 0.0078125 | 1.50882e-07 |
+| functional_8 | passed | 1536 | 2.04832e-07 |
 
 ## Benchmark
 
 | Metric | Value |
 |---|---:|
-| GPU latency p50 | 0.024576 ms |
-| GPU latency p90 | 0.0267104 ms |
-| GPU latency p99 | 0.0363725 ms |
-| End-to-end latency p50 | 0.03435 ms |
-| Host/sync overhead p50 | 0.009774 ms |
-| Host/sync overhead ratio p50 | 28.4541 % |
-| Call throughput | 40690.1 calls/s |
-| Output element throughput | 40690.1 elements/s |
-| Reference speedup | 12.4167 x |
-| Reference GPU latency p50 | 0.305152 ms |
-| Reference effective bandwidth p50 | 54.9799 GB/s |
+| GPU latency p50 | 0.044032 ms |
+| GPU latency p90 | 0.048128 ms |
+| GPU latency p99 | 0.0696013 ms |
+| End-to-end latency p50 | 0.05675 ms |
+| Host/sync overhead p50 | 0.012718 ms |
+| Host/sync overhead ratio p50 | 22.4106 % |
+| Call throughput | 22710.8 calls/s |
+| Output element throughput | 22710.8 elements/s |
+| Reference speedup | 7.01163 x |
+| Reference GPU latency p50 | 0.308736 ms |
+| Reference effective bandwidth p50 | 54.3416 GB/s |
 
 ### Memory traffic and effective bandwidth
 
@@ -45,10 +45,10 @@ Passed 9/9 cases.
 | In-place reads | 0 bytes |
 | In-place writes | 0 bytes |
 | Minimum total traffic | 16,777,220 bytes |
-| Effective bandwidth, best | 712.348 GB/s |
-| Effective bandwidth, p50 | 682.667 GB/s |
-| Effective bandwidth, mean | 663.796 GB/s |
-| Effective bandwidth, p90 latency | 628.116 GB/s |
+| Effective bandwidth, best | 409.6 GB/s |
+| Effective bandwidth, p50 | 381.023 GB/s |
+| Effective bandwidth, mean | 365.816 GB/s |
+| Effective bandwidth, p90 latency | 348.596 GB/s |
 | Arithmetic throughput | n/a (challenge has no generic FLOP count) |
 
 ### Performance-case validation and memory
@@ -56,8 +56,8 @@ Passed 9/9 cases.
 | Metric | Value |
 |---|---:|
 | Performance output status | passed |
-| Performance max absolute error | 896 |
-| Performance max relative error | 4.27158e-07 |
+| Performance max absolute error | 768 |
+| Performance max relative error | 3.66135e-07 |
 | Resident PyTorch allocation | 16,777,728 bytes |
 | Resident PyTorch reservation | 62,914,560 bytes |
 | Incremental peak allocation | 0 bytes |
@@ -73,11 +73,24 @@ Effective memory bandwidth uses the minimum bytes implied by input/output argume
 
 Chrome trace: `profile_trace.json`
 
+## Native Nsight profiles
+
+| Tool | Status | File | Size | Version | Metric set | Source embedded |
+|---|---:|---|---:|---|---|---:|
+| nsys | stale | `solution.nsys-rep` | 56,723 bytes | NVIDIA Nsight Systems version 2026.1.3.243-261337792075v0 | n/a | no |
+
+Open nsys: `nsys-ui solution.nsys-rep`
+| ncu | stale | `solution.ncu-rep` | 224,502 bytes | NVIDIA (R) Nsight Compute Command Line Profiler Copyright (c) 2018-2026 NVIDIA Corporation Version 2026.2.0.0 (build 37790515) (public-release) | detailed | yes |
+
+Open ncu: `ncu-ui solution.ncu-rep`
+
+A stale report was generated from a different solution SHA-256 and was left on disk intentionally.
+
 ## Environment
 
 - GPU: NVIDIA GeForce RTX 4060 Laptop GPU
-- PyTorch: 2.5.1+cu124
-- Triton: 3.1.0
-- CUDA runtime: 12.4
-- Python: 3.12.3
+- PyTorch: 2.13.0+cu130
+- Triton: 3.7.1
+- CUDA runtime: 13.0
+- Python: 3.14.6
 - Platform: Windows-11-10.0.26200-SP0
