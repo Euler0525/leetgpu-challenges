@@ -28,6 +28,8 @@ cmake-build-*/
 *.so
 *.dylib
 *.dll
+*.nsys-rep
+*.ncu-rep
 
 # Fortran module files
 *.mod

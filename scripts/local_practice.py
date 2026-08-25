@@ -28,6 +28,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CHALLENGES_ROOT = REPO_ROOT / "challenges"
 BUILD_ROOT = REPO_ROOT / "out" / "local_practice"
 BACKENDS = ("pytorch", "triton", "cuda")
+REPORT_SCHEMA_VERSION = 3
+NCU_SETS = ("basic", "detailed", "full", "roofline")
 STARTER_FILES = {
     "pytorch": "starter.pytorch.py",
     "triton": "starter.triton.py",
@@ -98,11 +100,12 @@ def report_paths(challenge_dir: Path, backend: str) -> dict[str, Path]:
 
 def initial_report(challenge_dir: Path, backend: str) -> dict[str, Any]:
     return {
-        "schema_version": 2,
+        "schema_version": REPORT_SCHEMA_VERSION,
         "challenge": challenge_relative_path(challenge_dir),
         "backend": backend,
         "status": "not_run",
         "updated_at": None,
+        "native_profiles": {},
         "message": "Run scripts/local_practice.py to generate this report.",
     }
 
@@ -246,6 +249,55 @@ def render_markdown(report: dict[str, Any]) -> str:
             ]
         )
 
+    native_profiles = report.get("native_profiles", {})
+    if native_profiles:
+        lines.extend(
+            [
+                "",
+                "## Native Nsight profiles",
+                "",
+                "| Tool | Status | File | Size | Version | Metric set | Source embedded |",
+                "|---|---:|---|---:|---|---|---:|",
+            ]
+        )
+        for tool in ("nsys", "ncu"):
+            native = native_profiles.get(tool)
+            if not native:
+                continue
+            source_embedded = native.get("source_embedded")
+            embedded_text = "yes" if source_embedded else "no"
+            lines.append(
+                "| {tool} | {status} | `{file}` | {size} bytes | {version} | {metric_set} | "
+                "{embedded} |".format(
+                    tool=tool,
+                    status=native.get("status", "unknown"),
+                    file=native.get("file", "not generated"),
+                    size=format_number(native.get("size_bytes")),
+                    version=markdown_cell(native.get("tool_version", "unavailable")),
+                    metric_set=native.get("metric_set") or "n/a",
+                    embedded=embedded_text,
+                )
+            )
+            if native.get("open_command"):
+                lines.extend(["", f"Open {tool}: `{native['open_command']}`"])
+            last_attempt = native.get("last_attempt")
+            if last_attempt and last_attempt.get("status") == "failed":
+                lines.extend(
+                    [
+                        "",
+                        f"Latest {tool} generation attempt failed: "
+                        f"{last_attempt.get('error', 'unknown error')}",
+                    ]
+                )
+        if any(item.get("status") == "stale" for item in native_profiles.values()):
+            lines.extend(
+                [
+                    "",
+                    "A stale report was generated from a different solution SHA-256 and was "
+                    "left on disk intentionally.",
+                ]
+            )
+
     errors = report.get("errors", [])
     if errors:
         lines.extend(["", "## Errors", ""])
@@ -281,6 +333,10 @@ def format_number(value: Any) -> str:
             return str(value)
         return f"{value:.6g}"
     return str(value)
+
+
+def markdown_cell(value: Any) -> str:
+    return str(value).replace("|", "\\|").replace("\r", " ").replace("\n", " ")
 
 
 def write_report(challenge_dir: Path, backend: str, report: dict[str, Any]) -> None:
@@ -391,30 +447,48 @@ def cuda_library_suffix() -> str:
     return ".dll" if os.name == "nt" else ".so"
 
 
-def compile_cuda_solution(challenge_dir: Path, solution_path: Path) -> tuple[Path, str]:
-    if shutil.which("nvcc") is None:
+def compile_cuda_solution(challenge_dir: Path, solution_path: Path) -> tuple[Path, dict[str, Any]]:
+    nvcc = shutil.which("nvcc")
+    if nvcc is None:
         raise PracticeError("nvcc is not available on PATH")
+    nvcc_path = Path(nvcc).resolve()
+    nvcc_version = run_command([str(nvcc_path), "--version"])
     capability = torch.cuda.get_device_capability()
     arch = f"sm_{capability[0]}{capability[1]}"
     source = solution_path.read_bytes()
-    build_key = hashlib.sha256(source + arch.encode() + platform.platform().encode()).hexdigest()[
-        :16
-    ]
+    compile_flags = ["-O3", "-lineinfo", f"-arch={arch}", "--shared"]
+    if os.name == "nt":
+        compile_flags.extend(["-Xlinker", "/EXPORT:solve"])
+    else:
+        compile_flags.extend(["-Xcompiler", "-fPIC"])
+    cache_metadata = {
+        "solution_path": str(solution_path.resolve()),
+        "arch": arch,
+        "platform": platform.platform(),
+        "nvcc_path": str(nvcc_path),
+        "nvcc_version": nvcc_version,
+        "compile_flags": compile_flags,
+    }
+    cache_input = source + json.dumps(cache_metadata, sort_keys=True).encode("utf-8")
+    build_key = hashlib.sha256(cache_input).hexdigest()[:16]
     build_dir = BUILD_ROOT / challenge_dir.parent.name / challenge_dir.name / "cuda" / build_key
     build_dir.mkdir(parents=True, exist_ok=True)
     library_path = build_dir / f"solution{cuda_library_suffix()}"
-    command = ["nvcc", "-O3", "-lineinfo", f"-arch={arch}", "--shared"]
-    if os.name == "nt":
-        command.extend(["-Xlinker", "/EXPORT:solve"])
-    else:
-        command.extend(["-Xcompiler", "-fPIC"])
+    command = [str(nvcc_path), *compile_flags]
     command.extend(["-o", str(library_path), str(solution_path)])
     if not library_path.exists():
         result = subprocess.run(command, check=False, capture_output=True, text=True)
         if result.returncode != 0:
             details = (result.stdout + "\n" + result.stderr).strip()
             raise PracticeError(f"CUDA compilation failed:\n{details}")
-    return library_path, " ".join(command)
+    return library_path, {
+        "library": str(library_path),
+        "compile_command": command,
+        "nvcc_path": str(nvcc_path),
+        "nvcc_version": nvcc_version,
+        "compile_flags": compile_flags,
+        "build_cache_key": build_key,
+    }
 
 
 def is_pointer_ctype(value: Any) -> bool:
@@ -424,10 +498,7 @@ def is_pointer_ctype(value: Any) -> bool:
         return False
 
 
-def load_cuda_solution(
-    challenge_dir: Path, solution_path: Path, signature: Dict[str, tuple]
-) -> tuple[Callable[..., Any], dict[str, Any]]:
-    library_path, compile_command = compile_cuda_solution(challenge_dir, solution_path)
+def make_cuda_invoker(library_path: Path, signature: Dict[str, tuple]) -> Callable[..., Any]:
     library = ctypes.CDLL(str(library_path))
     native_solve = library.solve
     argtypes = []
@@ -449,7 +520,14 @@ def load_cuda_solution(
         native_solve(*args)
 
     invoke._native_library = library  # type: ignore[attr-defined]
-    return invoke, {"library": str(library_path), "compile_command": compile_command}
+    return invoke
+
+
+def load_cuda_solution(
+    challenge_dir: Path, solution_path: Path, signature: Dict[str, tuple]
+) -> tuple[Callable[..., Any], dict[str, Any]]:
+    library_path, compile_details = compile_cuda_solution(challenge_dir, solution_path)
+    return make_cuda_invoker(library_path, signature), compile_details
 
 
 def materialize_value(value: Any, device: str = "cuda") -> Any:
@@ -944,6 +1022,300 @@ def create_invoker(
     return load_cuda_solution(challenge_dir, solution_path, signature)
 
 
+def native_profile_path(solution_path: Path, tool: str) -> Path:
+    return solution_path.with_suffix(f".{tool}-rep")
+
+
+def find_native_tool(tool: str) -> Path | None:
+    executable = shutil.which(tool)
+    if executable is None and os.name == "nt":
+        executable = shutil.which(f"{tool}.exe") or shutil.which(f"{tool}.bat")
+    if executable is None:
+        return None
+    path = Path(executable).resolve()
+    if tool == "ncu" and path.suffix.lower() in {".bat", ".cmd"}:
+        native_executable = path.parent / "target" / "windows-desktop-win7-x64" / "ncu.exe"
+        if native_executable.is_file():
+            return native_executable.resolve()
+    return path
+
+
+def executable_prefix(path: Path) -> list[str]:
+    if os.name == "nt" and path.suffix.lower() in {".bat", ".cmd"}:
+        command_processor = os.environ.get("COMSPEC", "cmd.exe")
+        return [command_processor, "/d", "/s", "/c", str(path)]
+    return [str(path)]
+
+
+def native_tool_version(path: Path) -> str:
+    return run_command([*executable_prefix(path), "--version"], timeout=60)
+
+
+def native_profile_error(tool: str, result: subprocess.CompletedProcess[str]) -> str:
+    output = "\n".join(part.strip() for part in (result.stdout, result.stderr) if part.strip())
+    if "ERR_NVGPUCTRPERM" in output:
+        return (
+            "NCU cannot access NVIDIA GPU Performance Counters (ERR_NVGPUCTRPERM). "
+            "Enable access in NVIDIA Control Panel > Desktop/Developer > Manage GPU "
+            "Performance Counters, then allow access to all users, or run in a permitted "
+            "administrator session."
+        )
+    tail = output[-4000:] if output else "no diagnostic output"
+    return f"{tool} exited with code {result.returncode}: {tail}"
+
+
+def native_target_command(
+    challenge_dir: Path,
+    solution_path: Path,
+    library_path: Path,
+    solution_sha256: str,
+    warmup: int,
+    seed: int,
+) -> list[str]:
+    return [
+        sys.executable,
+        str(Path(__file__).resolve()),
+        "_native-target",
+        str(challenge_dir),
+        "--solution",
+        str(solution_path),
+        "--library",
+        str(library_path),
+        "--solution-sha256",
+        solution_sha256,
+        "--warmup",
+        str(warmup),
+        "--seed",
+        str(seed),
+    ]
+
+
+def generate_native_profile(
+    tool: str,
+    challenge_dir: Path,
+    solution_path: Path,
+    library_path: Path,
+    solution_sha256: str,
+    warmup: int,
+    seed: int,
+    ncu_set: str,
+) -> dict[str, Any]:
+    tool_path = find_native_tool(tool)
+    if tool_path is None:
+        display_name = "NVIDIA Nsight Systems" if tool == "nsys" else "NVIDIA Nsight Compute"
+        raise PracticeError(f"{display_name} CLI ({tool}) is not available on PATH")
+
+    output_dir = (
+        BUILD_ROOT
+        / challenge_dir.parent.name
+        / challenge_dir.name
+        / "native_profiles"
+        / solution_sha256[:16]
+        / tool
+    )
+    output_dir.mkdir(parents=True, exist_ok=True)
+    unique_name = f"{solution_path.stem}-{os.getpid()}-{time.time_ns()}"
+    temporary_base = output_dir / unique_name
+    temporary_report = temporary_base.with_suffix(f".{tool}-rep")
+    final_report = native_profile_path(solution_path, tool)
+    target_command = native_target_command(
+        challenge_dir,
+        solution_path,
+        library_path,
+        solution_sha256,
+        warmup,
+        seed,
+    )
+
+    if tool == "nsys":
+        profiler_arguments = [
+            "profile",
+            "--trace=cuda,nvtx",
+            "--sample=none",
+            "--cpuctxsw=none",
+            "--capture-range=cudaProfilerApi",
+            "--capture-range-end=stop",
+            "--cuda-memory-usage=true",
+            "--force-overwrite=true",
+            f"--output={temporary_base}",
+        ]
+        timeout = 300
+    else:
+        profiler_arguments = [
+            "--set",
+            ncu_set,
+            "--target-processes",
+            "application-only",
+            "--profile-from-start",
+            "off",
+            "--import-source",
+            "on",
+            "--source-folders",
+            str(solution_path.parent),
+            "--export",
+            str(temporary_base),
+            "--force-overwrite",
+        ]
+        timeout = 1800
+
+    command = [*executable_prefix(tool_path), *profiler_arguments, *target_command]
+    try:
+        result = subprocess.run(
+            command,
+            cwd=REPO_ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        temporary_report.unlink(missing_ok=True)
+        raise PracticeError(f"{tool} timed out after {timeout} seconds") from exc
+    if result.returncode != 0:
+        temporary_report.unlink(missing_ok=True)
+        raise PracticeError(native_profile_error(tool, result))
+    if not temporary_report.is_file() or temporary_report.stat().st_size == 0:
+        temporary_report.unlink(missing_ok=True)
+        raise PracticeError(f"{tool} did not produce a non-empty {temporary_report.name}")
+
+    final_report.parent.mkdir(parents=True, exist_ok=True)
+    os.replace(temporary_report, final_report)
+    return {
+        "status": "passed",
+        "format": "Nsight Systems report" if tool == "nsys" else "Nsight Compute report",
+        "file": final_report.name,
+        "size_bytes": final_report.stat().st_size,
+        "solution_sha256": solution_sha256,
+        "generated_at": utc_now(),
+        "tool_path": str(tool_path),
+        "tool_version": native_tool_version(tool_path),
+        "metric_set": ncu_set if tool == "ncu" else None,
+        "source_embedded": tool == "ncu",
+        "open_command": f"{tool}-ui {final_report.name}",
+        "error": None,
+    }
+
+
+def carry_native_profiles(
+    previous_report: dict[str, Any], solution_path: Path, solution_sha256: str
+) -> dict[str, Any]:
+    carried = copy.deepcopy(previous_report.get("native_profiles", {}))
+    if not isinstance(carried, dict):
+        return {}
+    for native in carried.values():
+        if not isinstance(native, dict):
+            continue
+        filename = native.get("file")
+        exists = bool(
+            filename
+            and (solution_path.parent / filename).is_file()
+            and (solution_path.parent / filename).stat().st_size > 0
+        )
+        if native.get("solution_sha256") != solution_sha256:
+            native["status"] = "stale"
+        elif not exists:
+            native["status"] = "missing"
+        elif native.get("status") in {"stale", "missing"}:
+            native["status"] = "passed"
+    return carried
+
+
+def record_native_failure(
+    native_profiles: dict[str, Any],
+    tool: str,
+    solution_path: Path,
+    solution_sha256: str,
+    ncu_set: str,
+    error: str,
+) -> None:
+    attempt = {
+        "status": "failed",
+        "generated_at": utc_now(),
+        "file": native_profile_path(solution_path, tool).name,
+        "solution_sha256": solution_sha256,
+        "metric_set": ncu_set if tool == "ncu" else None,
+        "error": error,
+    }
+    existing = native_profiles.get(tool)
+    if isinstance(existing, dict) and existing.get("size_bytes"):
+        existing["error"] = error
+        existing["last_attempt"] = attempt
+        return
+    native_profiles[tool] = {
+        "status": "failed",
+        "format": "Nsight Systems report" if tool == "nsys" else "Nsight Compute report",
+        "file": attempt["file"],
+        "size_bytes": None,
+        "solution_sha256": solution_sha256,
+        "generated_at": None,
+        "tool_version": "unavailable",
+        "metric_set": attempt["metric_set"],
+        "source_embedded": False,
+        "error": error,
+        "last_attempt": attempt,
+    }
+
+
+def cuda_profiler_call(name: str, result: Any) -> None:
+    value = getattr(result, "value", result)
+    if value is not None and int(value) != 0:
+        raise PracticeError(f"{name} failed with CUDA error {value}")
+
+
+def run_native_target(
+    challenge_value: str,
+    solution_value: str,
+    library_value: str,
+    expected_sha256: str,
+    warmup: int,
+    seed: int,
+) -> int:
+    challenge_dir = resolve_challenge_path(challenge_value)
+    solution_path = Path(solution_value).resolve()
+    library_path = Path(library_value).resolve()
+    if not solution_path.is_file():
+        raise PracticeError(f"CUDA solution does not exist: {solution_path}")
+    if solution_hash(solution_path) != expected_sha256:
+        raise PracticeError("CUDA solution changed after the precompiled library was created")
+    if not library_path.is_file():
+        raise PracticeError(f"Precompiled CUDA library does not exist: {library_path}")
+    if not torch.cuda.is_available():
+        raise PracticeError("CUDA is not available to PyTorch")
+
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    challenge = load_challenge(challenge_dir)
+    signature = challenge.get_solve_signature()
+    invoke = make_cuda_invoker(library_path, signature)
+    case = materialize_case(challenge.generate_performance_test())
+    initial_inout = inout_snapshot(case, signature)
+    for _ in range(warmup):
+        reset_inout(case, initial_inout)
+        invoke(**case)
+    synchronize()
+    reset_inout(case, initial_inout)
+    synchronize()
+    if solution_hash(solution_path) != expected_sha256:
+        raise PracticeError("CUDA solution changed while the native profiling target warmed up")
+
+    cudart = torch.cuda.cudart()
+    profiler_started = False
+    range_started = False
+    try:
+        cuda_profiler_call("cudaProfilerStart", cudart.cudaProfilerStart())
+        profiler_started = True
+        torch.cuda.nvtx.range_push("leetgpu::cuda::solve")
+        range_started = True
+        invoke(**case)
+        synchronize()
+    finally:
+        if range_started:
+            torch.cuda.nvtx.range_pop()
+        if profiler_started:
+            cuda_profiler_call("cudaProfilerStop", cudart.cudaProfilerStop())
+    return 0
+
+
 def run_backend(
     challenge_dir: Path,
     backend: str,
@@ -953,11 +1325,14 @@ def run_backend(
     should_profile: bool,
     solution_override: str | None,
     seed: int,
+    run_nsys: bool,
+    run_ncu: bool,
+    ncu_set: str,
 ) -> bool:
     paths = report_paths(challenge_dir, backend)
     previous_report = read_report(paths["json"])
     report: dict[str, Any] = {
-        "schema_version": 2,
+        "schema_version": REPORT_SCHEMA_VERSION,
         "challenge": challenge_relative_path(challenge_dir),
         "backend": backend,
         "mode": mode,
@@ -965,7 +1340,12 @@ def run_backend(
         "updated_at": utc_now(),
         "environment": environment_info(),
         "errors": [],
+        "native_profiles": {},
     }
+    standard_success = False
+    solution_path: Path | None = None
+    current_solution: dict[str, str] | None = None
+    backend_details: dict[str, Any] = {}
     try:
         if not torch.cuda.is_available():
             raise PracticeError("CUDA is not available to PyTorch")
@@ -987,6 +1367,9 @@ def run_backend(
         report["solution"] = current_solution
         same_solution = (
             previous_report.get("solution", {}).get("sha256") == current_solution["sha256"]
+        )
+        report["native_profiles"] = carry_native_profiles(
+            previous_report, solution_path, current_solution["sha256"]
         )
         if same_solution:
             for section in ("correctness", "benchmark", "profile"):
@@ -1023,6 +1406,7 @@ def run_backend(
                 report["profile"] = profile_result
 
         report["status"] = "passed"
+        standard_success = True
     except Exception as exc:
         report["errors"].append(
             {
@@ -1032,14 +1416,63 @@ def run_backend(
                 "traceback": traceback.format_exc(),
             }
         )
+
+    if (
+        standard_success
+        and backend == "cuda"
+        and mode in {"benchmark", "run"}
+        and (run_nsys or run_ncu)
+        and solution_path is not None
+        and current_solution is not None
+    ):
+        native_success = True
+        library_path = Path(backend_details["library"])
+        for tool, requested in (("nsys", run_nsys), ("ncu", run_ncu)):
+            if not requested:
+                continue
+            try:
+                report["native_profiles"][tool] = generate_native_profile(
+                    tool=tool,
+                    challenge_dir=challenge_dir,
+                    solution_path=solution_path,
+                    library_path=library_path,
+                    solution_sha256=current_solution["sha256"],
+                    warmup=warmup,
+                    seed=seed,
+                    ncu_set=ncu_set,
+                )
+            except Exception as exc:
+                native_success = False
+                record_native_failure(
+                    report["native_profiles"],
+                    tool,
+                    solution_path,
+                    current_solution["sha256"],
+                    ncu_set,
+                    str(exc),
+                )
+                report["errors"].append(
+                    {
+                        "stage": tool,
+                        "type": type(exc).__name__,
+                        "message": str(exc),
+                        "traceback": traceback.format_exc(),
+                    }
+                )
+        if not native_success:
+            report["status"] = "partial"
+
     write_report(challenge_dir, backend, report)
-    status = "PASS" if report["status"] == "passed" else "FAIL"
+    status = {"passed": "PASS", "partial": "PARTIAL"}.get(report["status"], "FAIL")
     print(f"[{status}] {challenge_relative_path(challenge_dir)} [{backend}]")
     print(f"  report: {paths['markdown'].relative_to(REPO_ROOT)}")
     if report.get("profile"):
         print(f"  trace:  {paths['trace'].relative_to(REPO_ROOT)}")
-    if report["errors"]:
-        print(f"  error:  {report['errors'][0]['message']}")
+    for tool, native in report.get("native_profiles", {}).items():
+        if native.get("status") == "passed":
+            print(f"  {tool}:   {solution_path.parent / native['file']}")
+    for error in report["errors"]:
+        print(f"  error:  [{error['stage']}] {error['message']}")
     return report["status"] == "passed"
 
 
@@ -1059,7 +1492,7 @@ def backends_for(challenge_dir: Path, requested: str) -> list[str]:
     return supported
 
 
-def add_run_arguments(parser: argparse.ArgumentParser) -> None:
+def add_run_arguments(parser: argparse.ArgumentParser, allow_native_profiles: bool) -> None:
     parser.add_argument("challenge", help="Challenge path, for example easy/1_vector_add")
     parser.add_argument("--backend", choices=("all",) + BACKENDS, default="all")
     parser.add_argument("--solution", help="Override solution file; requires one explicit backend")
@@ -1071,6 +1504,25 @@ def add_run_arguments(parser: argparse.ArgumentParser) -> None:
         action="store_true",
         help="Do not generate a PyTorch Profiler Chrome trace for benchmark/run",
     )
+    if allow_native_profiles:
+        parser.add_argument(
+            "--nsys",
+            action="store_true",
+            help="Generate a CUDA Nsight Systems .nsys-rep beside the solution",
+        )
+        parser.add_argument(
+            "--ncu",
+            action="store_true",
+            help="Generate a CUDA Nsight Compute .ncu-rep beside the solution",
+        )
+        parser.add_argument(
+            "--ncu-set",
+            choices=NCU_SETS,
+            default=None,
+            help="Nsight Compute metric set (default: detailed; requires --ncu)",
+        )
+    else:
+        parser.set_defaults(nsys=False, ncu=False, ncu_set=None)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -1086,11 +1538,37 @@ def build_parser() -> argparse.ArgumentParser:
         ("run", "Run correctness tests, benchmark, and profiler"),
     ):
         command_parser = subparsers.add_parser(command, help=help_text)
-        add_run_arguments(command_parser)
+        add_run_arguments(command_parser, allow_native_profiles=command != "test")
+    return parser
+
+
+def build_native_target_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("challenge")
+    parser.add_argument("--solution", required=True)
+    parser.add_argument("--library", required=True)
+    parser.add_argument("--solution-sha256", required=True)
+    parser.add_argument("--warmup", type=int, default=5)
+    parser.add_argument("--seed", type=int, default=0)
     return parser
 
 
 def main() -> int:
+    if len(sys.argv) > 1 and sys.argv[1] == "_native-target":
+        native_args = build_native_target_parser().parse_args(sys.argv[2:])
+        try:
+            return run_native_target(
+                challenge_value=native_args.challenge,
+                solution_value=native_args.solution,
+                library_value=native_args.library,
+                expected_sha256=native_args.solution_sha256,
+                warmup=native_args.warmup,
+                seed=native_args.seed,
+            )
+        except Exception as exc:
+            print(f"native target error: {exc}", file=sys.stderr)
+            return 2
+
     parser = build_parser()
     args = parser.parse_args()
     if args.command == "init":
@@ -1099,6 +1577,11 @@ def main() -> int:
         parser.error("--warmup must be non-negative and --repeat must be at least 1")
     if args.solution and args.backend == "all":
         parser.error("--solution requires an explicit --backend")
+    if (args.nsys or args.ncu) and args.backend in {"pytorch", "triton"}:
+        parser.error("--nsys and --ncu require --backend cuda or --backend all")
+    if args.ncu_set is not None and not args.ncu:
+        parser.error("--ncu-set requires --ncu")
+    ncu_set = args.ncu_set or "detailed"
 
     try:
         challenge_dir = resolve_challenge_path(args.challenge)
@@ -1118,6 +1601,9 @@ def main() -> int:
             should_profile=not args.no_profile,
             solution_override=args.solution,
             seed=args.seed,
+            run_nsys=args.nsys and backend == "cuda",
+            run_ncu=args.ncu and backend == "cuda",
+            ncu_set=ncu_set,
         )
         success = backend_success and success
     return 0 if success else 1
