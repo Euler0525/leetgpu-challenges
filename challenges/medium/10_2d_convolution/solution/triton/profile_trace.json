@@ -1,1 +1,255 @@
-{"traceEvents": []}
+ {
+    "schemaVersion": 1,
+    "deviceProperties": [
+    {
+      "id": 0, "name": "NVIDIA GeForce RTX 4060 Laptop GPU", "totalGlobalMem": 8585216000,
+      "computeMajor": 8, "computeMinor": 9,
+      "maxThreadsPerBlock": 1024, "maxThreadsPerMultiprocessor": 1536,
+      "regsPerBlock": 65536, "warpSize": 32,
+      "sharedMemPerBlock": 49152, "numSms": 24
+    , "regsPerMultiprocessor": 65536, "sharedMemPerBlockOptin": 101376, "sharedMemPerMultiprocessor": 102400
+    }],
+    
+      "record_shapes": 1,
+      "host_name": "Euler0525-PC",
+      "cuda_driver_version": 13030,
+      "trace_id": "A27EDD27A49645D29E0E48AF32DC9264",
+      "profile_memory": 1,
+      "cupti_version": 130000,
+      "cuda_runtime_version": 13030,
+    "displayTimeUnit": "ms",
+    "baseTimeNanoseconds": 1782967788000000000,
+    "traceEvents": [
+    
+  {
+    "ph": "M",
+    "name": "thread_name",
+    "ts": 5179168674301.500,
+    "pid": 0,
+    "tid": 7,
+    "args": {
+      "name": "stream 7 "
+    }
+  },
+  {
+    "ph": "M",
+    "name": "thread_sort_index",
+    "ts": 5179168674301.500,
+    "pid": 0,
+    "tid": 7,
+    "args": {
+      "sort_index": 7
+    }
+  },
+  {
+    "ph": "M",
+    "name": "thread_name",
+    "ts": 5179168674301.500,
+    "pid": 29496,
+    "tid": 16116,
+    "args": {
+      "name": "thread 16116 ()"
+    }
+  },
+  {
+    "ph": "M",
+    "name": "thread_sort_index",
+    "ts": 5179168674301.500,
+    "pid": 29496,
+    "tid": 16116,
+    "args": {
+      "sort_index": 16116
+    }
+  },
+  {
+    "ph": "M",
+    "name": "thread_name",
+    "ts": 5179168674301.500,
+    "pid": 29496,
+    "tid": 16116,
+    "args": {
+      "name": "thread 16116 ()"
+    }
+  },
+  {
+    "ph": "M",
+    "name": "thread_sort_index",
+    "ts": 5179168674301.500,
+    "pid": 29496,
+    "tid": 16116,
+    "args": {
+      "sort_index": 16116
+    }
+  },
+  {
+    "ph": "X",
+    "cat": "user_annotation",
+    "name": "leetgpu::triton::solve",
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168674638.084,
+    "dur": 7492.500
+    ,
+    "args": {
+      "External id": 1,"Record function id": 0, "Ev Idx": 0
+    }
+  },
+  {
+    "ph": "X",
+    "cat": "overhead",
+    "name": "Activity Buffer Request",
+    "pid": -1,
+    "tid": 0,
+    "ts": 5179168675585.700,
+    "dur": 1004.000
+    
+  },
+  {
+    "ph": "X",
+    "cat": "kernel",
+    "name": "conv2d_kernel",
+    "pid": 0,
+    "tid": 7,
+    "ts": 5179168678783.612,
+    "dur": 3244.579
+    ,
+    "args": {
+            "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 6,      "registers per thread": 40,      "shared memory": 0,      "blocks per SM": 1522.041626,      "warps per SM": 6088.166504,      "grid": [36529, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 100,      "occupancy": {        "activeBlocksPerMultiprocessor": 12,        "limitingFactors": "WARPS|REGS",        "blockLimitRegs": 12,        "blockLimitSharedMem": 100,        "blockLimitWarps": 12,        "blockLimitBlocks": 24,        "blockLimitBarriers": 2147483647,        "allocatedRegistersPerBlock": 5120,        "allocatedSharedMemPerBlock": 1024      },      "graph id": 0, "graph node id": 0,      "channel": 0, "channel_type": 1
+    }
+  },
+  {
+    "ph": "f",
+    "id": 6,
+    "pid": 0,
+    "tid": 7,
+    "ts": 5179168678783.612,
+    "cat": "ac2g",
+    "name": "ac2g"
+    , "bp": "e"
+  },
+  {
+    "ph": "X",
+    "cat": "cuda_driver",
+    "name": "cuLaunchKernelEx",
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168676602.400,
+    "dur": 455.300
+    ,
+    "args": {
+            "cbid": 652, "correlation": 6
+    }
+  },
+  {
+    "ph": "s",
+    "id": 6,
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168676602.400,
+    "cat": "ac2g",
+    "name": "ac2g"
+    
+  },
+  {
+    "ph": "X",
+    "cat": "cuda_runtime",
+    "name": "cudaDeviceSynchronize",
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168677104.100,
+    "dur": 4926.400
+    ,
+    "args": {
+            "cbid": 165, "correlation": 9
+    }
+  },
+  {
+    "ph": "s",
+    "id": 9,
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168677104.100,
+    "cat": "ac2g",
+    "name": "ac2g"
+    
+  },
+  {
+    "ph": "X",
+    "cat": "cuda_runtime",
+    "name": "cudaDeviceSynchronize",
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168682182.200,
+    "dur": 5.400
+    ,
+    "args": {
+            "cbid": 165, "correlation": 13
+    }
+  },
+  {
+    "ph": "s",
+    "id": 13,
+    "pid": 29496,
+    "tid": 16116,
+    "ts": 5179168682182.200,
+    "cat": "ac2g",
+    "name": "ac2g"
+    
+  },
+  {
+    "ph": "X",
+    "cat": "gpu_user_annotation",
+    "name": "leetgpu::triton::solve",
+    "pid": 0,
+    "tid": 7,
+    "ts": 5179168678783.611,
+    "dur": 3244.581
+    ,
+    "args": {
+      "External id": 1
+    }
+  },
+  {
+    "ph": "X",
+    "cat": "Trace",
+    "name": "PyTorch Profiler (0)",
+    "pid": "Spans",
+    "tid": "PyTorch Profiler",
+    "ts": 5179168674046.500,
+    "dur": 8150.800
+    ,
+    "args": {
+      "Op count": 0
+    }
+  },
+  {
+    "ph": "M",
+    "name": "process_sort_index",
+    "ts": 5179168674046.500,
+    "pid": "Spans",
+    "tid": 0,
+    "args": {
+      "sort_index": 536870912
+    }
+  },
+  {
+    "ph": "i",
+    
+    "s": "g",
+    "name": "Iteration Start: PyTorch Profiler",
+    "pid": "Traces",
+    "tid": "Trace PyTorch Profiler",
+    "ts": 5179168674046.500
+    
+  },
+  {
+    "ph": "i",
+    
+    "s": "g",
+    "name": "Record Window End",
+    "pid": "",
+    "tid": "",
+    "ts": 5179168682328.000
+    
+  }
+  ],"traceName": "C:/Syncdisk/leetgpu-challenges/challenges/medium/10_2d_convolution/solution/triton/profile_trace.json" }

@@ -1,8 +1,215 @@
 {
   "backend": "triton",
+  "benchmark": {
+    "arithmetic_throughput": {
+      "reason": "Challenge metadata does not define a generic operation count.",
+      "status": "unavailable"
+    },
+    "calls_per_second": 303.4687641200604,
+    "case": {
+      "input": {
+        "bytes": 37748736,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          9437184
+        ]
+      },
+      "input_cols": 3072,
+      "input_rows": 3072,
+      "kernel": {
+        "bytes": 900,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          225
+        ]
+      },
+      "kernel_cols": 15,
+      "kernel_rows": 15,
+      "output": {
+        "bytes": 37405456,
+        "dtype": "torch.float32",
+        "kind": "tensor",
+        "shape": [
+          9351364
+        ]
+      }
+    },
+    "effective_bandwidth_gbps": 22.80722288656944,
+    "effective_memory_bandwidth_gbps": {
+      "best": 22.94514906081558,
+      "mean": 22.141588097438195,
+      "p50": 22.80722288656944,
+      "p90": 21.009831200683273
+    },
+    "gpu_latency_ms": {
+      "max": 3.6034560203552246,
+      "mean": 3.3942954619725545,
+      "min": 3.275424003601074,
+      "p50": 3.295232057571411,
+      "p90": 3.5771392583847046,
+      "p99": 3.5975168442726138,
+      "stddev": 0.13577710412723917
+    },
+    "host_sync_overhead_ms_p50": 0.02261794223159086,
+    "host_sync_overhead_percent_p50": 0.6817047857176727,
+    "io_bytes": 75155092,
+    "memory": {
+      "incremental_peak_allocated_bytes": 0,
+      "incremental_peak_reserved_bytes": 0,
+      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
+      "peak_allocated_bytes": 75498496,
+      "peak_reserved_bytes": 643825664,
+      "resident_allocated_bytes": 75498496,
+      "resident_reserved_bytes": 643825664
+    },
+    "memory_traffic_bytes": {
+      "inout_read": 0,
+      "inout_write": 0,
+      "input_read": 37749636,
+      "minimum_total": 75155092,
+      "output_write": 37405456
+    },
+    "output_elements": 9351364,
+    "output_throughput_elements_per_second": 2837846875.916825,
+    "peak_allocated_bytes": 75498496,
+    "peak_reserved_bytes": 643825664,
+    "performance_correctness": {
+      "max_abs_error": 0.0,
+      "max_rel_error": 0.0,
+      "outputs": [
+        {
+          "max_abs_error": 0.0,
+          "max_rel_error": 0.0,
+          "name": "output"
+        }
+      ],
+      "status": "passed"
+    },
+    "reference_effective_memory_bandwidth_gbps": {
+      "best": 2.6957127771989113,
+      "mean": 2.581489296557232,
+      "p50": 2.5899002196057253,
+      "p90": 2.5380093308809557
+    },
+    "reference_gpu_latency_ms": {
+      "max": 35.22230529785156,
+      "mean": 29.11307519276937,
+      "min": 27.879487991333008,
+      "p50": 29.01852798461914,
+      "p90": 29.611826515197755,
+      "p99": 34.489435348510746,
+      "stddev": 1.4512801337918735
+    },
+    "reference_wall_latency_ms": {
+      "max": 35.487600000124075,
+      "mean": 29.17635666660014,
+      "min": 27.937300000303367,
+      "p50": 29.075750000174594,
+      "p90": 29.67810999998619,
+      "p99": 34.701844999981404,
+      "stddev": 1.4839982786715116
+    },
+    "repeat": 30,
+    "speedup_vs_reference": 8.80621682407576,
+    "updated_at": "2026-08-31T03:29:13+00:00",
+    "wall_latency_ms": {
+      "max": 3.6393000000316533,
+      "mean": 3.420566666712451,
+      "min": 3.2952000001387205,
+      "p50": 3.317849999803002,
+      "p90": 3.6105499996665458,
+      "p99": 3.633992999975817,
+      "stddev": 0.13825229190981494
+    },
+    "warmup": 5
+  },
   "challenge": "challenges/medium/10_2d_convolution",
-  "message": "Run scripts/local_practice.py to generate this report.",
-  "schema_version": 2,
-  "status": "not_run",
-  "updated_at": null
+  "correctness": {
+    "cases": [
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "example",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_1",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_2",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_3",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_4",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_5",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_6",
+        "status": "passed"
+      },
+      {
+        "max_abs_error": 0.0,
+        "max_rel_error": 0.0,
+        "name": "functional_7",
+        "status": "passed"
+      }
+    ],
+    "passed": 8,
+    "total": 8,
+    "updated_at": "2026-08-31T03:29:13+00:00"
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_capability": [
+      8,
+      9
+    ],
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 610.88, 8188 MiB",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "triton": "3.7.1"
+  },
+  "errors": [],
+  "mode": "run",
+  "native_profiles": {},
+  "profile": {
+    "format": "PyTorch Profiler Chrome trace JSON",
+    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
+    "range": "leetgpu::triton::solve",
+    "trace": "profile_trace.json",
+    "updated_at": "2026-08-31T03:29:13+00:00"
+  },
+  "schema_version": 3,
+  "solution": {
+    "path": "challenges\\medium\\10_2d_convolution\\solution\\triton\\solution.py",
+    "sha256": "07f6c6ccd2fc27c97689d091d1133860ba6557abd4a10630816dc148bf5500a7"
+  },
+  "status": "passed",
+  "updated_at": "2026-08-31T03:29:13+00:00"
 }
