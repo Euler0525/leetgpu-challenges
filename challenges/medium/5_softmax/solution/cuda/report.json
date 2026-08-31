@@ -1,122 +1,30 @@
 {
   "backend": "cuda",
   "backend_details": {
-    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\5_softmax\\cuda\\566357d5246f0268\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\medium\\5_softmax\\solution\\cuda\\solution.cu",
-    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\5_softmax\\cuda\\566357d5246f0268\\solution.dll"
-  },
-  "benchmark": {
-    "arithmetic_throughput": {
-      "reason": "Challenge metadata does not define a generic operation count.",
-      "status": "unavailable"
-    },
-    "calls_per_second": 2341.5255316261855,
-    "case": {
-      "N": 500000,
-      "input": {
-        "bytes": 2000000,
-        "dtype": "torch.float32",
-        "kind": "tensor",
-        "shape": [
-          500000
-        ]
-      },
-      "output": {
-        "bytes": 2000000,
-        "dtype": "torch.float32",
-        "kind": "tensor",
-        "shape": [
-          500000
-        ]
-      }
-    },
-    "effective_bandwidth_gbps": 9.366102126504742,
-    "effective_memory_bandwidth_gbps": {
-      "best": 9.442514151699351,
-      "mean": 9.298358333260937,
-      "p50": 9.366102126504742,
-      "p90": 9.232450705414303
-    },
-    "gpu_latency_ms": {
-      "max": 0.481471985578537,
-      "mean": 0.43018346428871157,
-      "min": 0.4236159920692444,
-      "p50": 0.4270720034837723,
-      "p90": 0.43325441181659696,
-      "p99": 0.4719135862588883,
-      "stddev": 0.010583276454235877
-    },
-    "host_sync_overhead_ms_p50": 0.01042799728747923,
-    "host_sync_overhead_percent_p50": 2.383542232936257,
-    "io_bytes": 4000000,
-    "memory": {
-      "incremental_peak_allocated_bytes": 0,
-      "incremental_peak_reserved_bytes": 0,
-      "native_cuda_allocation_tracking": "not visible to the PyTorch allocator",
-      "peak_allocated_bytes": 4000768,
-      "peak_reserved_bytes": 44040192,
-      "resident_allocated_bytes": 4000768,
-      "resident_reserved_bytes": 44040192
-    },
-    "memory_traffic_bytes": {
-      "inout_read": 0,
-      "inout_write": 0,
-      "input_read": 2000000,
-      "minimum_total": 4000000,
-      "output_write": 2000000
-    },
-    "output_elements": 500000,
-    "output_throughput_elements_per_second": 1170762765.8130927,
-    "peak_allocated_bytes": 4000768,
-    "peak_reserved_bytes": 44040192,
-    "performance_correctness": {
-      "max_abs_error": 5.820766091346741e-11,
-      "max_rel_error": 1.556566805123284e-06,
-      "outputs": [
-        {
-          "max_abs_error": 5.820766091346741e-11,
-          "max_rel_error": 1.556566805123284e-06,
-          "name": "output"
-        }
-      ],
-      "status": "passed"
-    },
-    "reference_effective_memory_bandwidth_gbps": {
-      "best": 59.10165374704311,
-      "mean": 45.82335358648282,
-      "p50": 45.02881925086739,
-      "p90": 40.60419103031218
-    },
-    "reference_gpu_latency_ms": {
-      "max": 0.11059200018644333,
-      "mean": 0.08729173416892687,
-      "min": 0.0676800012588501,
-      "p50": 0.08883199840784073,
-      "p90": 0.09851199835538865,
-      "p99": 0.1097011198848486,
-      "stddev": 0.010626960838914129
-    },
-    "reference_wall_latency_ms": {
-      "max": 0.14279999959398992,
-      "mean": 0.10046333324377581,
-      "min": 0.07890000051702373,
-      "p50": 0.1006499987852294,
-      "p90": 0.11023999868484682,
-      "p99": 0.13740599966695302,
-      "stddev": 0.012867206083655072
-    },
-    "repeat": 30,
-    "speedup_vs_reference": 0.20800239229733572,
-    "updated_at": "2026-08-11T13:03:05+00:00",
-    "wall_latency_ms": {
-      "max": 0.495999996928731,
-      "mean": 0.441113332878255,
-      "min": 0.43259999802103266,
-      "p50": 0.4375000007712515,
-      "p90": 0.44751000132237095,
-      "p99": 0.4864589981298195,
-      "stddev": 0.011990572067326254
-    },
-    "warmup": 5
+    "build_cache_key": "8a85aedd922463be",
+    "compile_command": [
+      "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+      "-O3",
+      "-lineinfo",
+      "-arch=sm_89",
+      "--shared",
+      "-Xlinker",
+      "/EXPORT:solve",
+      "-o",
+      "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\5_softmax\\cuda\\8a85aedd922463be\\solution.dll",
+      "C:\\Syncdisk\\leetgpu-challenges\\challenges\\medium\\5_softmax\\solution\\cuda\\solution.cu"
+    ],
+    "compile_flags": [
+      "-O3",
+      "-lineinfo",
+      "-arch=sm_89",
+      "--shared",
+      "-Xlinker",
+      "/EXPORT:solve"
+    ],
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\medium\\5_softmax\\cuda\\8a85aedd922463be\\solution.dll",
+    "nvcc_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+    "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0"
   },
   "challenge": "challenges/medium/5_softmax",
   "correctness": {
@@ -177,7 +85,7 @@
       },
       {
         "max_abs_error": 4.656612873077393e-10,
-        "max_rel_error": 1.1727749673528769e-07,
+        "max_rel_error": 1.592162231141515e-07,
         "name": "functional_9",
         "status": "passed"
       },
@@ -190,7 +98,7 @@
     ],
     "passed": 11,
     "total": 11,
-    "updated_at": "2026-08-11T13:03:05+00:00"
+    "updated_at": "2026-08-26T12:17:09+00:00"
   },
   "environment": {
     "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
@@ -198,28 +106,29 @@
       8,
       9
     ],
-    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
-    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 610.88, 8188 MiB",
     "platform": "Windows-11-10.0.26200-SP0",
-    "python": "3.12.3",
-    "torch": "2.5.1+cu124",
-    "torch_cuda": "12.4",
-    "triton": "3.1.0"
+    "python": "3.14.6",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "triton": "3.7.1"
   },
-  "errors": [],
+  "errors": [
+    {
+      "message": "Tensor-likes are not close!\n\nMismatched elements: 35759 / 500000 (7.2%)\nGreatest absolute difference: 0.00495483074337244 at index (3833,) (up to 1e-05 allowed)\nGreatest relative difference: 124.47174072265625 at index (93,) (up to 1e-05 allowed)",
+      "stage": "run",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Syncdisk\\leetgpu-challenges\\scripts\\local_practice.py\", line 1392, in run_backend\n    benchmark, profile_result = run_benchmark(\n                                ~~~~~~~~~~~~~^\n        challenge,\n        ^^^^^^^^^^\n    ...<6 lines>...\n        should_profile,\n        ^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Syncdisk\\leetgpu-challenges\\scripts\\local_practice.py\", line 883, in run_benchmark\n    absolute, relative = assert_output_close(actual, expected, challenge.atol, challenge.rtol)\n                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Syncdisk\\leetgpu-challenges\\scripts\\local_practice.py\", line 614, in assert_output_close\n    torch.testing.assert_close(actual, expected_device, atol=atol, rtol=rtol, equal_nan=True)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Software\\Miniconda\\Lib\\site-packages\\torch\\testing\\_comparison.py\", line 1631, in assert_close\n    raise error_metas[0].to_error(msg)\nAssertionError: Tensor-likes are not close!\n\nMismatched elements: 35759 / 500000 (7.2%)\nGreatest absolute difference: 0.00495483074337244 at index (3833,) (up to 1e-05 allowed)\nGreatest relative difference: 124.47174072265625 at index (93,) (up to 1e-05 allowed)\n",
+      "type": "AssertionError"
+    }
+  ],
   "mode": "run",
-  "profile": {
-    "format": "PyTorch Profiler Chrome trace JSON",
-    "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
-    "range": "leetgpu::cuda::solve",
-    "trace": "profile_trace.json",
-    "updated_at": "2026-08-11T13:03:05+00:00"
-  },
-  "schema_version": 2,
+  "native_profiles": {},
+  "schema_version": 3,
   "solution": {
     "path": "challenges\\medium\\5_softmax\\solution\\cuda\\solution.cu",
-    "sha256": "f269ba649585f09fa038526f677ec01b166a750fcba12e3846796547452fb3ef"
+    "sha256": "ca29d90d664ff7b0864588e65a7bf37e505ca629498aa497e24af5edf39a8786"
   },
-  "status": "passed",
-  "updated_at": "2026-08-11T13:03:05+00:00"
+  "status": "failed",
+  "updated_at": "2026-08-26T12:17:09+00:00"
 }
