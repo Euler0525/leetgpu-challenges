@@ -5,7 +5,7 @@
       "reason": "Challenge metadata does not define a generic operation count.",
       "status": "unavailable"
     },
-    "calls_per_second": 5813.412630166751,
+    "calls_per_second": 5752.415974174978,
     "case": {
       "N": 500000,
       "input": {
@@ -25,24 +25,24 @@
         ]
       }
     },
-    "effective_bandwidth_gbps": 23.253650520667005,
+    "effective_bandwidth_gbps": 23.009663896699912,
     "effective_memory_bandwidth_gbps": {
-      "best": 23.55823644781697,
-      "mean": 23.195254350125673,
-      "p50": 23.253650520667005,
-      "p90": 22.863623256575565
+      "best": 23.251488279818087,
+      "mean": 22.961198236949755,
+      "p50": 23.009663896699912,
+      "p90": 22.581110557715174
     },
     "gpu_latency_ms": {
-      "max": 0.18432000279426575,
-      "mean": 0.17244906822840372,
-      "min": 0.16979199647903442,
-      "p50": 0.17201600223779678,
-      "p90": 0.17495039850473404,
-      "p99": 0.18164736405014992,
-      "stddev": 0.002765703388696182
+      "max": 0.17919999361038208,
+      "mean": 0.1742069363594055,
+      "min": 0.17203199863433838,
+      "p50": 0.1738400012254715,
+      "p90": 0.17713920623064042,
+      "p99": 0.17919071570038794,
+      "stddev": 0.0018583236143745235
     },
-    "host_sync_overhead_ms_p50": 0.02123399770061951,
-    "host_sync_overhead_percent_p50": 10.987838399682396,
+    "host_sync_overhead_ms_p50": 0.029160000194679014,
+    "host_sync_overhead_percent_p50": 14.364532015113813,
     "io_bytes": 4000000,
     "memory": {
       "incremental_peak_allocated_bytes": 2000384,
@@ -61,7 +61,7 @@
       "output_write": 2000000
     },
     "output_elements": 500000,
-    "output_throughput_elements_per_second": 2906706315.0833755,
+    "output_throughput_elements_per_second": 2876207987.087489,
     "peak_allocated_bytes": 6001152,
     "peak_reserved_bytes": 44040192,
     "performance_correctness": {
@@ -77,40 +77,40 @@
       "status": "passed"
     },
     "reference_effective_memory_bandwidth_gbps": {
-      "best": 59.83724057467817,
-      "mean": 35.772885242508856,
-      "p50": 40.277106502145514,
-      "p90": 24.969038946593063
+      "best": 51.39802859834414,
+      "mean": 38.46193334636434,
+      "p50": 39.06860550304829,
+      "p90": 32.71566232845505
     },
     "reference_gpu_latency_ms": {
-      "max": 0.21980799734592438,
-      "mean": 0.11181653290987015,
-      "min": 0.06684800237417221,
-      "p50": 0.09931199997663498,
-      "p90": 0.1601983964443207,
-      "p99": 0.20921951666474345,
-      "stddev": 0.036189816598279655
+      "max": 0.16383999586105347,
+      "mean": 0.1039989322423935,
+      "min": 0.07782399654388428,
+      "p50": 0.10238399729132652,
+      "p90": 0.1222655974328518,
+      "p99": 0.15756671562790872,
+      "stddev": 0.016755295310005327
     },
     "reference_wall_latency_ms": {
-      "max": 0.23009999858913943,
-      "mean": 0.1280933326294568,
-      "min": 0.07859999823267572,
-      "p50": 0.11914999959117267,
-      "p90": 0.17872000098577703,
-      "p99": 0.21939899939752652,
-      "stddev": 0.03521243120749196
+      "max": 0.4208999998809304,
+      "mean": 0.12758666647035474,
+      "min": 0.09169999975711107,
+      "p50": 0.11760000052163377,
+      "p90": 0.1372299979266245,
+      "p99": 0.34433999928296566,
+      "stddev": 0.05586228736504926
     },
     "repeat": 30,
-    "speedup_vs_reference": 0.5773416349912899,
-    "updated_at": "2026-08-11T12:34:53+00:00",
+    "speedup_vs_reference": 0.5889553415185144,
+    "updated_at": "2026-09-08T08:21:54+00:00",
     "wall_latency_ms": {
-      "max": 0.21109999943291768,
-      "mean": 0.1945633332070429,
-      "min": 0.189200000022538,
-      "p50": 0.1932499999384163,
-      "p90": 0.19823999828076921,
-      "p99": 0.2102879995800322,
-      "stddev": 0.004992893976113744
+      "max": 0.23489999875891954,
+      "mean": 0.2051866670323458,
+      "min": 0.2002000001084525,
+      "p50": 0.2030000014201505,
+      "p90": 0.2069699992716778,
+      "p99": 0.23141999969084281,
+      "stddev": 0.006890511853483698
     },
     "warmup": 5
   },
@@ -173,7 +173,7 @@
       },
       {
         "max_abs_error": 4.656612873077393e-10,
-        "max_rel_error": 1.4176997976729735e-07,
+        "max_rel_error": 1.4176995966857302e-07,
         "name": "functional_9",
         "status": "passed"
       },
@@ -186,7 +186,7 @@
     ],
     "passed": 11,
     "total": 11,
-    "updated_at": "2026-08-11T12:34:53+00:00"
+    "updated_at": "2026-09-08T08:21:54+00:00"
   },
   "environment": {
     "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
@@ -194,28 +194,29 @@
       8,
       9
     ],
-    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
-    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 610.88, 8188 MiB",
     "platform": "Windows-11-10.0.26200-SP0",
-    "python": "3.12.3",
-    "torch": "2.5.1+cu124",
-    "torch_cuda": "12.4",
-    "triton": "3.1.0"
+    "python": "3.14.6",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "triton": "3.7.1"
   },
   "errors": [],
   "mode": "run",
+  "native_profiles": {},
   "profile": {
     "format": "PyTorch Profiler Chrome trace JSON",
     "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
     "range": "leetgpu::pytorch::solve",
     "trace": "profile_trace.json",
-    "updated_at": "2026-08-11T12:34:53+00:00"
+    "updated_at": "2026-09-08T08:21:54+00:00"
   },
-  "schema_version": 2,
+  "schema_version": 3,
   "solution": {
     "path": "challenges\\medium\\5_softmax\\solution\\pytorch\\solution.py",
-    "sha256": "191935dfb14a5ad4e28803c7f7f8eabc7bd261ff2aebb08e42476b572898e04f"
+    "sha256": "32596344e4eea82f45dfd06a8917cae09c3f28f0bd37813d030a2ee2c2bd7e54"
   },
   "status": "passed",
-  "updated_at": "2026-08-11T12:34:53+00:00"
+  "updated_at": "2026-09-08T08:21:54+00:00"
 }

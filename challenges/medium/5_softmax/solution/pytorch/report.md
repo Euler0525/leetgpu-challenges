@@ -2,7 +2,7 @@
 
 - Backend: `pytorch`
 - Status: **passed**
-- Updated: 2026-08-11T12:34:53+00:00
+- Updated: 2026-09-08T08:21:54+00:00
 
 ## Correctness
 
@@ -26,17 +26,17 @@ Passed 11/11 cases.
 
 | Metric | Value |
 |---|---:|
-| GPU latency p50 | 0.172016 ms |
-| GPU latency p90 | 0.17495 ms |
-| GPU latency p99 | 0.181647 ms |
-| End-to-end latency p50 | 0.19325 ms |
-| Host/sync overhead p50 | 0.021234 ms |
-| Host/sync overhead ratio p50 | 10.9878 % |
-| Call throughput | 5813.41 calls/s |
-| Output element throughput | 2.90671e+09 elements/s |
-| Reference speedup | 0.577342 x |
-| Reference GPU latency p50 | 0.099312 ms |
-| Reference effective bandwidth p50 | 40.2771 GB/s |
+| GPU latency p50 | 0.17384 ms |
+| GPU latency p90 | 0.177139 ms |
+| GPU latency p99 | 0.179191 ms |
+| End-to-end latency p50 | 0.203 ms |
+| Host/sync overhead p50 | 0.02916 ms |
+| Host/sync overhead ratio p50 | 14.3645 % |
+| Call throughput | 5752.42 calls/s |
+| Output element throughput | 2.87621e+09 elements/s |
+| Reference speedup | 0.588955 x |
+| Reference GPU latency p50 | 0.102384 ms |
+| Reference effective bandwidth p50 | 39.0686 GB/s |
 
 ### Memory traffic and effective bandwidth
 
@@ -47,10 +47,10 @@ Passed 11/11 cases.
 | In-place reads | 0 bytes |
 | In-place writes | 0 bytes |
 | Minimum total traffic | 4,000,000 bytes |
-| Effective bandwidth, best | 23.5582 GB/s |
-| Effective bandwidth, p50 | 23.2537 GB/s |
-| Effective bandwidth, mean | 23.1953 GB/s |
-| Effective bandwidth, p90 latency | 22.8636 GB/s |
+| Effective bandwidth, best | 23.2515 GB/s |
+| Effective bandwidth, p50 | 23.0097 GB/s |
+| Effective bandwidth, mean | 22.9612 GB/s |
+| Effective bandwidth, p90 latency | 22.5811 GB/s |
 | Arithmetic throughput | n/a (challenge has no generic FLOP count) |
 
 ### Performance-case validation and memory
@@ -78,8 +78,8 @@ Chrome trace: `profile_trace.json`
 ## Environment
 
 - GPU: NVIDIA GeForce RTX 4060 Laptop GPU
-- PyTorch: 2.5.1+cu124
-- Triton: 3.1.0
-- CUDA runtime: 12.4
-- Python: 3.12.3
+- PyTorch: 2.13.0+cu130
+- Triton: 3.7.1
+- CUDA runtime: 13.0
+- Python: 3.14.6
 - Platform: Windows-11-10.0.26200-SP0
