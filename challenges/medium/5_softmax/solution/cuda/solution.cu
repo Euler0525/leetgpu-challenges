@@ -75,38 +75,25 @@ __device__ __forceinline__ float softmax_sum_kernel(float local_sum_value,
     return shared[0];
 }
 
-template <int ELEMENTS_PER_THREAD>
 __global__ void softmax_kernel(const float *input, float *output, int N) {
     int tid = threadIdx.x;
     __shared__ float shared[WARPS_NUM];
-    float values[ELEMENTS_PER_THREAD];
-
     float local_max_value = -FLT_MAX;
-#pragma unroll
-    for (int i = 0; i < ELEMENTS_PER_THREAD; i += 1) {
-        int idx = tid + i * BLOCK_SIZE;
-        values[i] = idx < N ? input[idx] : -FLT_MAX;
-        local_max_value = fmaxf(local_max_value, values[i]);
+    for (int i = tid; i < N; i += BLOCK_SIZE) {
+        local_max_value = fmaxf(local_max_value, input[i]);
     }
     float max_value = softmax_max_kernel(local_max_value, shared);
 
     float local_sum_value = 0.0f;
-#pragma unroll
-    for (int i = 0; i < ELEMENTS_PER_THREAD; i += 1) {
-        int idx = tid + i * BLOCK_SIZE;
-        if (idx < N) {
-            values[i] = expf(values[i] - max_value);
-            local_sum_value += values[i];
-        }
+    for (int i = tid; i < N; i += BLOCK_SIZE) {
+        float value = expf(input[i] - max_value);
+        output[i] = value;
+        local_sum_value += value;
     }
     float inv_sum_value = 1.0f / softmax_sum_kernel(local_sum_value, shared);
 
-#pragma unroll
-    for (int i = 0; i < ELEMENTS_PER_THREAD; i += 1) {
-        int idx = tid + i * BLOCK_SIZE;
-        if (idx < N) {
-            output[idx] = values[i] * inv_sum_value;
-        }
+    for (int i = tid; i < N; i += BLOCK_SIZE) {
+        output[i] *= inv_sum_value;
     }
 }
 
@@ -116,8 +103,6 @@ extern "C" void solve(const float *input, float *output, int N) {
         return;
     }
 
-    int elements_per_thread = (N + BLOCK_SIZE - 1) / BLOCK_SIZE;
-
-    softmax_kernel<16><<<1, BLOCK_SIZE>>>(input, output, N);
+    softmax_kernel<<<1, BLOCK_SIZE>>>(input, output, N);
     cudaDeviceSynchronize();
 }
