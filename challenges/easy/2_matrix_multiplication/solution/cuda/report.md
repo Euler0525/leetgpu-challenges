@@ -2,7 +2,7 @@
 
 - Backend: `cuda`
 - Status: **passed**
-- Updated: 2026-08-09T07:20:27+00:00
+- Updated: 2026-09-11T09:36:26+00:00
 
 ## Correctness
 
@@ -30,17 +30,17 @@ Passed 15/15 cases.
 
 | Metric | Value |
 |---|---:|
-| GPU latency p50 | 521.599 ms |
-| GPU latency p90 | 523.057 ms |
-| GPU latency p99 | 524.496 ms |
-| End-to-end latency p50 | 521.635 ms |
-| Host/sync overhead p50 | 0.0364146 ms |
-| Host/sync overhead ratio p50 | 0.00698086 % |
-| Call throughput | 1.91718 calls/s |
-| Output element throughput | 6.433e+07 elements/s |
-| Reference speedup | 0.124304 x |
-| Reference GPU latency p50 | 64.8371 ms |
-| Reference effective bandwidth p50 | 6.72775 GB/s |
+| GPU latency p50 | 391.042 ms |
+| GPU latency p90 | 410.314 ms |
+| GPU latency p99 | 439.86 ms |
+| End-to-end latency p50 | 391.081 ms |
+| Host/sync overhead p50 | 0.038551 ms |
+| Host/sync overhead ratio p50 | 0.00985756 % |
+| Call throughput | 2.55727 calls/s |
+| Output element throughput | 8.58077e+07 elements/s |
+| Reference speedup | 0.156548 x |
+| Reference GPU latency p50 | 61.2167 ms |
+| Reference effective bandwidth p50 | 7.12563 GB/s |
 
 ### Memory traffic and effective bandwidth
 
@@ -51,10 +51,10 @@ Passed 15/15 cases.
 | In-place reads | 0 bytes |
 | In-place writes | 0 bytes |
 | Minimum total traffic | 436,207,616 bytes |
-| Effective bandwidth, best | 0.844541 GB/s |
-| Effective bandwidth, p50 | 0.83629 GB/s |
-| Effective bandwidth, mean | 0.836542 GB/s |
-| Effective bandwidth, p90 latency | 0.833957 GB/s |
+| Effective bandwidth, best | 1.12468 GB/s |
+| Effective bandwidth, p50 | 1.1155 GB/s |
+| Effective bandwidth, mean | 1.10068 GB/s |
+| Effective bandwidth, p90 latency | 1.06311 GB/s |
 | Arithmetic throughput | n/a (challenge has no generic FLOP count) |
 
 ### Performance-case validation and memory
@@ -82,8 +82,8 @@ Chrome trace: `profile_trace.json`
 ## Environment
 
 - GPU: NVIDIA GeForce RTX 4060 Laptop GPU
-- PyTorch: 2.5.1+cu124
-- Triton: 3.1.0
-- CUDA runtime: 12.4
-- Python: 3.12.3
+- PyTorch: 2.13.0+cu130
+- Triton: 3.7.1
+- CUDA runtime: 13.0
+- Python: 3.14.6
 - Platform: Windows-11-10.0.26200-SP0

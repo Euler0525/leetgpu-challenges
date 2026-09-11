@@ -1,15 +1,37 @@
 {
   "backend": "cuda",
   "backend_details": {
-    "compile_command": "nvcc -O3 -lineinfo -arch=sm_89 --shared -Xlinker /EXPORT:solve -o C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\2_matrix_multiplication\\cuda\\169737ececa3fef3\\solution.dll C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\2_matrix_multiplication\\solution\\cuda\\solution.cu",
-    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\2_matrix_multiplication\\cuda\\169737ececa3fef3\\solution.dll"
+    "build_cache_key": "061ce13420db8ce0",
+    "compile_command": [
+      "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+      "-O3",
+      "-lineinfo",
+      "-arch=sm_89",
+      "--shared",
+      "-Xlinker",
+      "/EXPORT:solve",
+      "-o",
+      "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\2_matrix_multiplication\\cuda\\061ce13420db8ce0\\solution.dll",
+      "C:\\Syncdisk\\leetgpu-challenges\\challenges\\easy\\2_matrix_multiplication\\solution\\cuda\\solution.cu"
+    ],
+    "compile_flags": [
+      "-O3",
+      "-lineinfo",
+      "-arch=sm_89",
+      "--shared",
+      "-Xlinker",
+      "/EXPORT:solve"
+    ],
+    "library": "C:\\Syncdisk\\leetgpu-challenges\\out\\local_practice\\easy\\2_matrix_multiplication\\cuda\\061ce13420db8ce0\\solution.dll",
+    "nvcc_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+    "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0"
   },
   "benchmark": {
     "arithmetic_throughput": {
       "reason": "Challenge metadata does not define a generic operation count.",
       "status": "unavailable"
     },
-    "calls_per_second": 1.9171823784681135,
+    "calls_per_second": 2.5572694156454427,
     "case": {
       "A": {
         "bytes": 201326592,
@@ -42,24 +64,24 @@
       "M": 8192,
       "N": 6144
     },
-    "effective_bandwidth_gbps": 0.8362895547487855,
+    "effective_bandwidth_gbps": 1.1155003952684117,
     "effective_memory_bandwidth_gbps": {
-      "best": 0.8445411473093197,
-      "mean": 0.8365423940848216,
-      "p50": 0.8362895547487855,
-      "p90": 0.8339573674071401
+      "best": 1.1246835155949981,
+      "mean": 1.100681429176669,
+      "p50": 1.1155003952684117,
+      "p90": 1.0631065419321348
     },
     "gpu_latency_ms": {
-      "max": 524.7403564453125,
-      "mean": 521.4411356608073,
-      "min": 516.5025024414062,
-      "p50": 521.5987854003906,
-      "p90": 523.0574523925782,
-      "p99": 524.4957043457031,
-      "stddev": 1.5692666795283448
+      "max": 441.091064453125,
+      "mean": 396.30687357584634,
+      "min": 387.8492126464844,
+      "p50": 391.04209899902344,
+      "p90": 410.314111328125,
+      "p99": 439.8595733642578,
+      "stddev": 12.884669776306445
     },
-    "host_sync_overhead_ms_p50": 0.0364145993735292,
-    "host_sync_overhead_percent_p50": 0.006980855466338479,
+    "host_sync_overhead_ms_p50": 0.03855100102555298,
+    "host_sync_overhead_percent_p50": 0.009857557776266391,
     "io_bytes": 436207616,
     "memory": {
       "incremental_peak_allocated_bytes": 0,
@@ -78,7 +100,7 @@
       "output_write": 134217728
     },
     "output_elements": 33554432,
-    "output_throughput_elements_per_second": 64329965.74990658,
+    "output_throughput_elements_per_second": 85807722.71295474,
     "peak_allocated_bytes": 444727296,
     "peak_reserved_bytes": 2506096640,
     "performance_correctness": {
@@ -94,40 +116,40 @@
       "status": "passed"
     },
     "reference_effective_memory_bandwidth_gbps": {
-      "best": 7.126815264983742,
-      "mean": 6.656098777051351,
-      "p50": 6.727750234102262,
-      "p90": 6.261348905531859
+      "best": 7.513210581584603,
+      "mean": 6.7562514688102056,
+      "p50": 7.125630614955771,
+      "p90": 6.008579569466192
     },
     "reference_gpu_latency_ms": {
-      "max": 69.85932922363281,
-      "mean": 65.535027440389,
-      "min": 61.20652770996094,
-      "p50": 64.83707046508789,
-      "p90": 69.66671600341797,
-      "p99": 69.80795440673828,
-      "stddev": 2.8822691943633445
+      "max": 74.28195190429688,
+      "mean": 64.56355539957683,
+      "min": 58.05875015258789,
+      "p50": 61.21670341491699,
+      "p90": 72.59746017456055,
+      "p99": 74.07438613891601,
+      "stddev": 6.0699149511732715
     },
     "reference_wall_latency_ms": {
-      "max": 69.92019999961485,
-      "mean": 65.5994999999469,
-      "min": 61.26670000048762,
-      "p50": 64.9005499994928,
-      "p90": 69.72274000008838,
-      "p99": 69.86826099949212,
-      "stddev": 2.882574849699584
+      "max": 74.40520000000106,
+      "mean": 64.70791999998558,
+      "min": 58.13510000007227,
+      "p50": 61.31439999990107,
+      "p90": 72.7302900000268,
+      "p99": 74.203185999977,
+      "stddev": 6.098187563339486
     },
     "repeat": 30,
-    "speedup_vs_reference": 0.12430448896716187,
-    "updated_at": "2026-08-09T07:20:27+00:00",
+    "speedup_vs_reference": 0.15654760336960516,
+    "updated_at": "2026-09-11T09:36:26+00:00",
     "wall_latency_ms": {
-      "max": 524.7527999999875,
-      "mean": 521.4816066666572,
-      "min": 516.5926999998192,
-      "p50": 521.6351999997642,
-      "p90": 523.0886900003497,
-      "p99": 524.5148549998794,
-      "stddev": 1.5582824547154677
+      "max": 441.1332999998194,
+      "mean": 396.35232666664706,
+      "min": 387.87109999975655,
+      "p50": 391.080650000049,
+      "p90": 410.3566100000535,
+      "p99": 439.8982769998747,
+      "stddev": 12.882145521782633
     },
     "warmup": 5
   },
@@ -227,7 +249,7 @@
     ],
     "passed": 15,
     "total": 15,
-    "updated_at": "2026-08-09T07:20:27+00:00"
+    "updated_at": "2026-09-11T09:36:26+00:00"
   },
   "environment": {
     "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
@@ -235,28 +257,29 @@
       8,
       9
     ],
-    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Feb_27_16:28:36_Pacific_Standard_Time_2024\nCuda compilation tools, release 12.4, V12.4.99\nBuild cuda_12.4.r12.4/compiler.33961263_0",
-    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 566.14, 8188 MiB",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Fri_Apr_24_19:26:09_Pacific_Daylight_Time_2026\nCuda compilation tools, release 13.3, V13.3.33\nBuild cuda_13.3.r13.3/compiler.37862127_0",
+    "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 610.88, 8188 MiB",
     "platform": "Windows-11-10.0.26200-SP0",
-    "python": "3.12.3",
-    "torch": "2.5.1+cu124",
-    "torch_cuda": "12.4",
-    "triton": "3.1.0"
+    "python": "3.14.6",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "triton": "3.7.1"
   },
   "errors": [],
   "mode": "run",
+  "native_profiles": {},
   "profile": {
     "format": "PyTorch Profiler Chrome trace JSON",
     "note": "Native CUDA kernel detail depends on CUPTI support in the local PyTorch build.",
     "range": "leetgpu::cuda::solve",
     "trace": "profile_trace.json",
-    "updated_at": "2026-08-09T07:20:27+00:00"
+    "updated_at": "2026-09-11T09:36:26+00:00"
   },
-  "schema_version": 2,
+  "schema_version": 3,
   "solution": {
     "path": "challenges\\easy\\2_matrix_multiplication\\solution\\cuda\\solution.cu",
-    "sha256": "fe9d8dda9f157943885d6d76fd26190219c64cfeb91b23cb2e143379a597940c"
+    "sha256": "60fbb4548706778d247fe584dd4cc858963dfd90f34178bd07505cf42e87a853"
   },
   "status": "passed",
-  "updated_at": "2026-08-09T07:20:27+00:00"
+  "updated_at": "2026-09-11T09:36:26+00:00"
 }

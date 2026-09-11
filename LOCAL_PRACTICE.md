@@ -95,6 +95,23 @@ python scripts/local_practice.py --help
 python scripts/local_practice.py run --help
 ```
 
+---
+
+Compute Sanitizer 对代码的功能正确性执行不同类型的检查：
+
+- memcheck：内存访问错误和泄漏检测；
+
+- racecheck：共享内存数据访问危险检测工具；
+
+- initcheck：未初始化设备全局内存访问检测工具；
+
+- synccheck：线程同步危险检测；
+
+
+```powershell
+compute-sanitizer --tool memcheck python .\scripts\local_practice.py test easy/2_matrix_multiplication --backend cuda
+```
+
 ## 报告内容
 
 每次运行会更新对应后端目录下的固定报告文件，文件已纳入 Git，可直接查看改动：
